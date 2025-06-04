@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+// import Header from "@/components/header";
+// import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "TRPG charaseet",
@@ -15,10 +15,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className="text-black">
-        <Header />
+      <body className="w-screen h-screen text-black">
         {children}
-        <Footer />
       </body>
     </html>
   );

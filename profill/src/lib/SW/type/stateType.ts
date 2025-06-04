@@ -1,0 +1,36 @@
+export type usersStateType = {
+  userId:number,
+  states:{
+    A?:string|number,
+    B?:string|number,
+    C?:string|number,
+    D?:string|number,
+    E?:string|number,
+    F?:string|number,
+    G?:string|number,
+    H?:string|number
+  },
+  stateName:
+  {
+    DEX?:string|number,
+    AGI?:string|number,
+    INT?:string|number,
+    STR?:string|number,
+    HP?:string|number,
+    SP?:string|number
+  },
+  stateBonus:
+  {
+    DEX_Bonus?:string|number,
+    AGI_Bonus?:string|number,
+    INT_Bonus?:string|number,
+    STR_Bonus?:string|number,
+    HP_Bonus?:string|number,
+    SP_Bonus?:string|number
+  },
+  resists:
+  {
+    RES?:string|number,
+    DAM?:string|number
+  }[];
+};

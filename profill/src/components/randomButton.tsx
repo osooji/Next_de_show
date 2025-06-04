@@ -1,22 +1,27 @@
 "use client";
 
-import React, { useState } from 'react'
+import { useActionState, useState } from "react";
 
-export const randomNumber() => {
-  while(true){
-    let num:number = Math.ceil(Math.random()*6);
-    return num;
+
+async function randomNumber6() {
+  "use server"
+  const [state,setState] = useState<number>("" as number);
+  const [saikoro,setSaikoro] = useState(ture);
+  if (!state && saikoro)
+  setSaikoro((setTimeout(() => false,1000)))
+   while(saikoro){
+    // random()は小数点以下を含む0~1
+  const num = await Math.ceil(Math.random()*6);
+  setState(num);
   }
 }
 
-const RandomButton = () => {
-  const [num,setNum] = useState<number|null>(0)
+export const RandomButton6 = () => {
+  const [num,randomNumber6] = useActionState<number|null>(0)
   
     return (
-      <div>
-        {num}
-      </div>
+     <from action={randomNumber6}>
+      <bottom type="submit" ></bottom>
+     </from>
     )
 }
-
-export default RandomButton
