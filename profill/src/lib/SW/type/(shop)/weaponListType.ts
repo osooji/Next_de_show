@@ -51,3 +51,7 @@ export type weaponType = {
     name:string,stock:number,price:number,
   }[],
 }
+export type weaponActionType = {
+  success:string,
+  error:string
+}

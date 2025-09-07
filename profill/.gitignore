@@ -45,3 +45,4 @@ axios_index.txt
 
 #text
 text/*
+/src/generated/prisma

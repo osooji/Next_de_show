@@ -6,7 +6,7 @@ const page = () => {
   return (
     <div>
       {/* アイテム画面 */}
-      <div className=' flex justify-center items-center p-auto w-full h-screen'><ItemSeet /></div>
+      <div className=' flex justify-center items-center'><ItemSeet /></div>
     </div>  )
 }
 

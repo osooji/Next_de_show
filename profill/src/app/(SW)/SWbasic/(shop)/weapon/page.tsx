@@ -7,7 +7,7 @@ const page = () => {
   return (
     <div>
       {/* 武器 */}
-      <div className='flex justify-center items-center'><Weapon weapon={weapon}/></div>
+      <div><Weapon weapon={weapon}/></div>
     </div>
   )
 }

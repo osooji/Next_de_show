@@ -27,3 +27,7 @@ export type itemType = {
     name:string,price:number,min:number,max:number
   }[]
 }
+export type itemActionType = {
+  success:string,
+  error:string
+}

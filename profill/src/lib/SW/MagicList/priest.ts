@@ -1,0 +1,65 @@
+export const priestMagicList = {
+  level_1:[
+    {ID:'p1',name:'キュア・ウーンズ',sp:5,range:10,effect:'個人',time:'一瞬',category:'なし',magnification:'距離,目標数,効果の確実性',resist:'効果消滅',content:'回復力10で生命力を回復させる。'},
+    {ID:'p2',name:'サニティ',sp:3,range:0,effect:'個人',time:'一瞬',category:'精神',magnification:'達成値',resist:'効果消滅',content:'目標の心の平静さを取り戻させる。'},
+    {ID:'p3',name:'ターン・アンデット',sp:5,range:10,effect:'半径5メートルの空間',time:'18ラウンド',category:'なし',magnification:'達成値,持続時間,距離,範囲面積,効果',resist:'効果消滅',content:'アンデットに様々な効果を与える。'},
+    {ID:'p4',name:'トランスファー・メンタルパワー',sp:1,range:0,effect:'個人',time:'一瞬',category:'なし',magnification:'効果',resist:'なし',content:'術者の精神力を他者に譲り渡す。'},
+    {ID:'f1',name:'センス・イービル',sp:4,range:10,effect:'個人',time:'一瞬',category:'探知',magnification:'距離,目標値',resist:'なし',content:'邪悪な心を読み取る'},
+    {ID:'c1',name:'ラック',sp:1,range:0,effect:'失敗を成功にする',time:'眠りにつくまで',category:'非解除',magnification:'なし',resist:'なし',content:'攻撃の回避,魔法の抵抗,生死判定,防御ロールなどの失敗を成功にする'},
+  ],
+  level_2:[
+    {ID:'p5',name:'キュア・デフネス',sp:6,range:0,effect:'個人',time:'一瞬',category:'対抗/消滅(デフネス)',magnification:'なし',resist:'なし',content:'失われた聴覚を回復する。'},
+    {ID:'p6',name:'キュア・ブラインドネス',sp:6,range:0,effect:'個人',time:'一瞬',category:'対抗/消滅(ブラインドネス)',magnification:'なし',resist:'なし',content:'失われた視力を回復する。'},
+    {ID:'p7',name:'フォース',sp:10,range:10,effect:'個人',time:'一瞬',category:'ダメージ(爆発系)',magnification:'達成値,距離,目標数,ダメージの確実性',resist:'効果減少',content:'目標に打撃力10のダメージを与える'},
+    {ID:'p8',name:'ホーリー・ウェポン',sp:8,range:10,effect:'武器一つ',time:'18ラウンド',category:'武器強化',magnification:'持続時間,距離,目標数',resist:'なし',content:'アンデットに対して、武器の打撃力を+10する'},
+  ],
+  level_3:[
+    {ID:'p9',name:'キュア・・ポイズン',sp:9,range:0,effect:'個人',time:'一瞬',category:'対抗/消滅(ポイズン)',magnification:'達成値',resist:'なし',content:'目標が受けた毒や薬品の効果を解除する。'},
+    {ID:'p10',name:'ホーリー・ライト',sp:12,range:0,effect:'術者から半径10メートルの空間',time:'一瞬',category:'ダメージ(特殊) 対抗/優越(シェイド,Sウォール・シェイド)',magnification:'達成値,範囲面積,ダメージの確実性',resist:'効果減少',content:'聖なる光を放射して、アンデットに打撃力20のダメージを与える。'},
+    {ID:'r1',name:'インスピレーション',sp:3,range:0,effect:'術者',time:'眠りにつくまで',category:'非解除',magnification:'なし',resist:'なし',content:'知識関係の失敗ロールを成功にする'},
+    {ID:'r2',name:'ウィーク・ポイント',sp:15,range:10,effect:'個人',time:'18ラウンド',category:'目標値',magnification:'達成値,持続時間,距離,目標体積',resist:'効果消滅',content:'攻撃者のクリティカル値を-1にする'},
+    {ID:'ma1',name:'ピース',sp:15,range:0,effect:'術者から半径10メートルの空間',time:'1時間',category:'精神,目標値',magnification:'達成値,持続時間,範囲面積',resist:'効果消滅',content:'抵抗に失敗したら敵意を失う'},
+    {ID:'b1',name:'センス・メタル',sp:9,range:0,effect:'半径30メートルの空間',time:'18ラウンド',category:'探知',magnification:'持続時間,範囲面積',resist:'なし',content:'金属鉱脈を探知,色の種別で金属の種類,強さの度合いで純度がわかる'},
+  ],
+  level_4:[
+    {ID:'p11',name:'キュア・ディジーズ',sp:12,range:0,effect:'個人',time:'一瞬',category:'儀式',magnification:'達成値',resist:'なし',content:'目標の病気を癒す。'},
+    {ID:'p12',name:'H・プロテクティブサークル',sp:16,range:0,effect:'術者から半径5メートルの空間',time:'18ラウンド',category:'対抗/優越(C・プロテクティブサークル,Sウォール・サラマンダー) 被対抗/優越(C・プロテクティブサークル)',magnification:'持続時間,範囲面積',resist:'なし',content:'火や熱から2点守る。'},
+    {ID:'p13',name:'C・プロテクティブサークル',sp:16,range:0,effect:'術者から半径5メートルの空間',time:'18ラウンド',category:'対抗/優越(H・プロテクティブサークル,Sウォール・フラウ) 被対抗/優越(ｈ・プロテクティブサークル)',magnification:'持続時間,範囲面積',resist:'なし',content:'氷や冷気から2点守る。'},
+  ],
+  level_5:[
+    {ID:'p14',name:'クエスト',sp:25,range:0,effect:'個人',time:'使命が達成する',category:'呪い,目標値,儀式',magnification:'達成値',resist:'効果消滅',content:'目標に一つの使命を与える。'},
+    {ID:'p15',name:'リムーブ・カース',sp:20,range:0,effect:'個人',time:'一瞬',category:'対抗/消滅(非解除以外),儀式',magnification:'達成値',resist:'なし',content:'非解除以外のあらゆる魔法を解除する。'},
+    {ID:'m1',name:'バトルソング',sp:20,range:0,effect:'声が聞こえる範囲',time:'歌の間',category:'精神,目標値',magnification:'達成値',resist:'なし',content:'歌がきこえてる味方に攻撃力に＋２'},
+    {ID:'c2',name:'ガード・トレーディング',sp:25,range:0,effect:'不正な取引を試みる者がわかる',time:'1日',category:'探知,目標値',magnification:'達成値,目標値',resist:'なし',content:'商売を保護する。不正な取引を看破する'},
+    {ID:'b2',name:'ヒート・メタル',sp:25,range:0.3,effect:'10キロまでの金属塊一つ',time:'精神集中のかぎり',category:'集中',magnification:'達成値,距離,目標の重量',resist:'なし',content:'金属塊を加工できる柔らかさにする。着用した鎧にかけると打撃力10のダメージを受ける。'},
+  ],
+  level_6:[
+    {ID:'p16',name:'イクソシズム',sp:30,range:10,effect:'ホーント一体',time:'一瞬',category:'儀式',magnification:'達成値,距離,目標数',resist:'効果消滅',content:'ホーントを物質界から消滅させる。'},
+    {ID:'p17',name:'ブリザーベイション',sp:24,range:0,effect:'物体一つ',time:'永続',category:'目標値,非解除,対抗/優越(ロッツ) 被対抗/優越(ロッツ)',magnification:'達成値',resist:'なし',content:'物体を腐敗から保護する。'},
+    {ID:'ma2',name:'リターン・ホーム',sp:22,range:0,effect:'術者を安全な場所へ脱出させる',time:'一瞬',category:'なし',magnification:'なし',resist:'なし',content:'安全な場所（術者の自宅、神殿、なじみの街）まで脱出'},
+  ],
+  level_7:[
+    {ID:'p18',name:'フォース・イクスプロージョン',sp:35,range:0,effect:'術者から半径10メートルの空間',time:'一瞬',category:'ダメージ（爆発系）',magnification:'達成値,範囲面積,ダメージの確実性',resist:'効果消滅',content:'術者を中心に打撃力30の爆発をおこす。'},
+    {ID:'p19',name:'リジェネーション',sp:35,range:0,effect:'個人',time:'一週間',category:'非解除',magnification:'なし',resist:'なし',content:'目標の身体損失を回復する。'},
+    {ID:'m2',name:'ディバイン・アーマー',sp:21,range:0,effect:'防御力30の力場',time:'18ラウンド',category:'目標値',magnification:'達成値,持続時間',resist:'なし',content:'防御力30の鎧をまとう。着用してる鎧は無効になる'},
+    {ID:'m3',name:'ディバイン・ウェポン',sp:21,range:0,effect:'打撃力30の力場',time:'18ラウンド',category:'目標値',magnification:'達成値,持続時間',resist:'なし',content:'打撃力30(両手武器なら35)の武器を生み出す。弓も可能'},
+    {ID:'r3',name:'レジェンド',sp:28,range:0,effect:'目標に文章をおぼえさせる',time:'永続永続',category:'非解除',magnification:'文章量',resist:'なし',content:'口伝を継承する。文章を10まで覚える'},
+  ],
+  level_8:[
+    {ID:'p20',name:'サモン・サーバンツ',sp:32,range:0,effect:'術者から半径1キロメートルの地域',time:'一時間',category:'目標値',magnification:'達成値,持続時間,範囲面積',resist:'なし',content:'半径1キロメートル内にいる哺乳類,鳥類,爬虫類,両生類を呼び寄せ命令できる。'},
+    {ID:'p21',name:'パワーリンク',sp:24,range:0,effect:'術者から半径10メートルの空間',time:'精神集中の限り',category:'集中、目標値',magnification:'達成値,範囲面積',resist:'なし',content:'範囲内の者たちから精神力を集めて使うことができる。'},
+    {ID:'p22',name:'リフレッシュ',sp:40,range:10,effect:'個人',time:'一瞬',category:'なし',magnification:'達成値,距離,目標数',resist:'効果消滅',content:'目標を完全に健康な状態にする。'},
+    {ID:'f2',name:'バニッシュ',sp:32,range:30,effect:'物体一つ',time:'一瞬',category:'対抗/優越',magnification:'達成値,距離,目標値',resist:'効果消滅',content:'精霊,アンデット,デーモン,魔法生物を消滅させる'},
+  ],
+  level_9:[
+    {ID:'p23',name:'リコール・スピリット',sp:45,range:0,effect:'術者',time:'一瞬',category:'なし',magnification:'なし',resist:'なし',content:'死者の魂に術者の体を与える'},
+    {ID:'p24',name:'リザレクション',sp:45,range:0,effect:'個人',time:'一瞬',category:'儀式',magnification:'達成値',resist:'なし',content:'死者を生き返らせる。'},
+  ],
+  level_10:[
+    {ID:'p25',name:'コール・ゴッド',sp:50,range:0,effect:'術者',time:'10分',category:'目標値',magnification:'達成値,持続時間',resist:'なし',content:'自己の体に神を召喚する。持続時間が切れたら魂が破壊される。'},
+    {ID:'p26',name:'セーブ・ソウル',sp:40,range:0,effect:'魂一つ',time:'一瞬',category:'儀式',magnification:'達成値',resist:'効果消滅',content:'アンデット化した魂を救済する。'},
+    {ID:'p27',name:'リーンカーネーション',sp:50,range:0,effect:'個人',time:'生まれ変わるまで',category:'儀式',magnification:'達成値',resist:'なし',content:'魂を新しい体に転生させる。'},
+    {ID:'p28',name:'レスキュー',sp:50,range:0,effect:'半径10メートルの空間10人まで',time:'一瞬',category:'なし',magnification:'目標数,および範囲面積',resist:'なし',content:'パーティを安全な場所へ脱出させる。'},
+    {ID:'f3',name:'ジハド',sp:50,range:0,effect:'信者',time:'一週間',category:'儀式,精神,目標値',magnification:'達成値,持続時間',resist:'なし',content:'ファイター技能＋２（攻撃,回避,ダメージに＋2）命令に絶対'},
+  ]
+};

@@ -1,5 +1,5 @@
 import React from 'react'
-import { charNameType } from '@/lib/SW/type/nameType'
+import { charNameType } from '@/lib/SW/type/(menu)/nameType'
 
 export const Name = ({nameItems}:{nameItems:charNameType}) => {
   // const charFetch = await fetch('C:/Users/osooji/react/Next_de_show/profill/src/lib/SW/userItems/nameItems.json');

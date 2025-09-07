@@ -7,7 +7,7 @@ const page = () => {
   return (
     <div>
       {/* 防具 */}
-      <div className='flex justify-center items-center'><Armor armors1={armors1} armors2={armors2} /></div>
+      <div><Armor armors1={armors1} armors2={armors2} /></div>
     </div>
   )
 }

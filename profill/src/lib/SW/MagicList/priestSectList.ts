@@ -1,0 +1,30 @@
+export const priestSectList = {
+  fairs:[
+    {ID:'f1',Lv:"Lv1",name:'センス・イービル',sp:4,range:10,effect:'個人',time:'一瞬',category:'探知',magnification:'距離,目標値',resist:'なし',content:'邪悪な心を読み取る'},
+    {ID:'f2',Lv:"Lv8",name:'バニッシュ',sp:32,range:30,effect:'物体一つ',time:'一瞬',category:'対抗/優越',magnification:'達成値,距離,目標値',resist:'効果消滅',content:'精霊,アンデット,デーモン,魔法生物を消滅させる'},
+    {ID:'f3',Lv:"Lv10",name:'ジハド',sp:50,range:0,effect:'信者',time:'一週間',category:'儀式,精神,目標値',magnification:'達成値,持続時間',resist:'なし',content:'ファイター技能＋２（攻撃,回避,ダメージに＋2）命令に絶対'},
+
+  ],
+  mairi:[
+    {ID:'m1',Lv:"Lv5",name:'バトルソング',sp:20,range:0,effect:'声が聞こえる範囲',time:'歌の間',category:'精神,目標値',magnification:'達成値',resist:'なし',content:'歌がきこえてる味方に攻撃力に＋２'},
+    {ID:'m2',Lv:"Lv7",name:'ディバイン・アーマー',sp:21,range:0,effect:'防御力30の力場',time:'18ラウンド',category:'目標値',magnification:'達成値,持続時間',resist:'なし',content:'防御力30の鎧をまとう。着用してる鎧は無効になる'},
+    {ID:'m3',Lv:"Lv7",name:'ディバイン・ウェポン',sp:21,range:0,effect:'打撃力30の力場',time:'18ラウンド',category:'目標値',magnification:'達成値,持続時間',resist:'なし',content:'打撃力30(両手武器なら35)の武器を生み出す。弓も可能'},
+  ],
+  rada:[
+    {ID:'r1',Lv:"Lv3",name:'インスピレーション',sp:3,range:0,effect:'術者',time:'眠りにつくまで',category:'非解除',magnification:'なし',resist:'なし',content:'知識関係の失敗ロールを成功にする'},
+    {ID:'r2',Lv:"Lv3",name:'ウィーク・ポイント',sp:15,range:10,effect:'個人',time:'18ラウンド',category:'目標値',magnification:'達成値,持続時間,距離,目標体積',resist:'効果消滅',content:'攻撃者のクリティカル値を-1にする'},
+    {ID:'r3',Lv:"Lv7",name:'レジェンド',sp:28,range:0,effect:'目標に文章をおぼえさせる',time:'永続永続',category:'非解除',magnification:'文章量',resist:'なし',content:'口伝を継承する。文章を10まで覚える'},
+  ],
+  chaza:[
+    {ID:'c1',Lv:"Lv1",name:'ラック',sp:1,range:0,effect:'失敗を成功にする',time:'眠りにつくまで',category:'非解除',magnification:'なし',resist:'なし',content:'攻撃の回避,魔法の抵抗,生死判定,防御ロールなどの失敗を成功にする'},
+    {ID:'c2',Lv:"Lv5",name:'ガード・トレーディング',sp:25,range:0,effect:'不正な取引を試みる者がわかる',time:'1日',category:'探知,目標値',magnification:'達成値,目標値',resist:'なし',content:'商売を保護する。不正な取引を看破する'},
+  ],
+  mafa:[
+    {ID:'ma1',Lv:"Lv3",name:'ピース',sp:15,range:0,effect:'術者から半径10メートルの空間',time:'1時間',category:'精神,目標値',magnification:'達成値,持続時間,範囲面積',resist:'効果消滅',content:'抵抗に失敗したら敵意を失う'},
+    {ID:'ma2',Lv:"Lv6",name:'リターン・ホーム',sp:22,range:0,effect:'術者を安全な場所へ脱出させる',time:'一瞬',category:'なし',magnification:'なし',resist:'なし',content:'安全な場所（術者の自宅、神殿、なじみの街）まで脱出'},
+  ],
+  buraki:[
+    {ID:'b1',Lv:"Lv3",name:'センス・メタル',sp:9,range:0,effect:'半径30メートルの空間',time:'18ラウンド',category:'探知',magnification:'持続時間,範囲面積',resist:'なし',content:'金属鉱脈を探知,色の種別で金属の種類,強さの度合いで純度がわかる'},
+    {ID:'b2',Lv:"Lv5",name:'ヒート・メタル',sp:25,range:0.3,effect:'10キロまでの金属塊一つ',time:'精神集中のかぎり',category:'集中',magnification:'達成値,距離,目標の重量',resist:'なし',content:'金属塊を加工できる柔らかさにする。着用した鎧にかけると打撃力10のダメージを受ける。'},
+  ],
+};

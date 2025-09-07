@@ -1,3 +1,5 @@
+// 10XYXYX10より拝借
+
 //■[ 汎用的なXSS対策 ]
 export const validationForWord = (str:string,limit:number=20): {result:boolean, message:string} => {
   // 長さ1～20の範囲
@@ -51,7 +53,7 @@ export const validationForAuthenticationPassword = (str:string): {result:boolean
 export const validationForPhoneNumber = (str:string): {result:boolean, message:string} => {
   //11桁
   if(str.length!==11)return {result:false, message:'11桁の半角数字を入力して下さい'};
-  
+
   //半角数字
   const japanesePhoneNumberRegex = /^0[7-9]0\d{8}$/;
   const result = japanesePhoneNumberRegex.test(str);

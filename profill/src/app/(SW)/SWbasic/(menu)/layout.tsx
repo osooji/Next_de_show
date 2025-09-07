@@ -3,18 +3,16 @@ import React from 'react'
 
 const layout = ({ children }: Readonly<{children: React.ReactNode}>) => {
   return (
-    <div className='flex w-screen'>
-      {/* メニュー */}
-      <div className='w-full'>{children}</div>
-      {/* ヘルプ */}
-      <div className='w-[480px] h-screen right-0 p-10'>
-      {/* ページジャンプ */}
-        <div>
-          <Link href="/SWbasic/charSeet" className='hover:bg-green-300'>ステータス</Link>
-          <Link href="/SWbasic/battleSeet" className='hover:bg-green-300'>戦闘画面</Link>
-          <Link href="/SWbasic/itemSeet" className='hover:bg-green-300'>アイテム</Link>
-          <Link href="/SWbasic/rating" className='hover:bg-green-300'>レーティング表</Link>
+    <div className='w-full p-4 flex justify-center'>
+      <div className='flex-col mx-4'>
+        <div className='flex justify-center gap-8 mb-4'>
+          <Link href="/SWbasic/charSeet" className='border cursor-pointer rounded-md px-4 py-2 hover:text-white hover:bg-gray-700'>ステータス</Link>
+          <Link href="/SWbasic/battleSeet" className='border cursor-pointer rounded-md px-4 py-2 hover:text-white hover:bg-gray-700'>戦闘画面</Link>
+          <Link href="/SWbasic/itemSeet" className='border cursor-pointer rounded-md px-4 py-2 hover:text-white hover:bg-gray-700'>アイテム</Link>
+          <Link href="/SWbasic/rating" className='border cursor-pointer rounded-md px-4 py-2 hover:text-white hover:bg-gray-700'>レーティング表</Link>
         </div>
+        {/* ステータス */}
+        <div className='flex justify-center'>{children}</div>
       </div>
     </div>
   )

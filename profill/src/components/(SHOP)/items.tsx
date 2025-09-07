@@ -1,13 +1,11 @@
 "use client"
-import { itemType } from '@/lib/SW/type/(shop)/itemListType'
-import React, { useState } from 'react'
+import { itemBuy } from '@/action/actions'
+import { itemActionType, itemType } from '@/lib/SW/type/(shop)/itemListType'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import React, { useActionState, useState } from 'react'
 
 const Items = ({itemList}:{itemList:itemType}) => {
-    // const [formState, setFormState] = useState<FormData>(formData)
-    const [isList1, setIsList1] = useState<boolean>(false)
-    const [isList2, setIsList2] = useState<boolean>(false)
-    const [isList3, setIsList3] = useState<boolean>(false)
-    const [isList4, setIsList4] = useState<boolean>(false)
+    const [formState, formAction, isPending] = useActionState<itemActionType>(itemBuy,{success:'',error:''})
     const [state, setState] = useState<number[]>([1,1,1,1,1,1])
     const [state0, setState0] = useState<number[]>([1,1,1,1,1])
     const [state1, setState1] = useState<number[]>([1,1,1,1])
@@ -18,22 +16,6 @@ const Items = ({itemList}:{itemList:itemType}) => {
     const [state6, setState6] = useState<number[]>([1,1,1])
     const [state7, setState7] = useState<number[]>([1])
 
-    // const handleInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-    //   const {name, value} = e.target;
-    //   setFormState({...formData, [name]:value});
-    // }
-    const handleClick1 = () => {
-      setIsList1(!isList1)
-    }
-    const handleClick2 = () => {
-      setIsList2(!isList2)
-    }
-    const handleClick3 = () => {
-      setIsList3(!isList3)
-    }
-    const handleClick4 = () => {
-      setIsList4(!isList4)
-    }
     const handleClickAdd = (index:number, max:number) => {
       const num = state.map((s:number,i:number) => {
         if (i === index && max > state[index]) {
@@ -214,255 +196,250 @@ const Items = ({itemList}:{itemList:itemType}) => {
       })
       setState7(num);
     }
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathName = usePathname();
+  const item = searchParams.get("item");
+
+  const handleList = (itemName:string) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("item",itemName)
+    router.push(`${pathName}?${params}`)
+  }
+
+  const numList = [1,2,3,4];
+
   return (
     <div className='relative w-[594px] h-[420px] m-4 bg-white flex justify-center items-center border'>
-      <div>
-        <button onClick={handleClick1} className='absolute w-[50px] h-[50px] bg-white top-0 right-[-50px] border hover:bg-red-300'>1</button>
-        <button onClick={handleClick2} className='absolute w-[50px] h-[50px] bg-white top-[50px] right-[-50px] border hover:bg-red-300'>2</button>
-        <button onClick={handleClick3} className='absolute w-[50px] h-[50px] bg-white top-[100px] right-[-50px] border hover:bg-red-300'>3</button>
-        <button onClick={handleClick4} className='absolute w-[50px] h-[50px] bg-white top-[150px] right-[-50px] border hover:bg-red-300'>4</button>
+      <div className='absolute h-[420px] flex flex-col  right-[-50px]'>
+        {numList.map((num,index) => (
+          <button key={num} onClick={() => handleList(`${num}`)} className={`z-20 w-[50px] h-[50px] bg-white top-[${index*42}px] border focus:bg-black focus:text-white hover:bg-red-300`}>{num}</button>
+          ))}
+      </div>
+      {/*アイテム画面 */}
+      <div className="absolute bg-white flex-col justify-center items-center">
+      <div className='flex justify-center items-center text-[40px]'>アイテム屋</div>
+        <div className='flex justify-center items-center text-[24px]'>キャンプ道具</div>
+        <div className='flex justify-center items-center text-[24px]'>照明、ツール</div>
+        <div className='flex justify-center items-center text-[24px]'>その他、食料</div>
+        <div className='flex justify-center items-center text-[24px]'>馬、宿</div>
+      </div>
+      <div className="absolute w-[594px] bg-white top-0 flex ">
+        <div className='h-[40px] flex items-center'>
+          {/* 道具の名前 袋*/}
+          <div className='flex w-[379px] h-[40px] px-5 items-center border'>名称（道具一覧）</div>
+          {/* 値 */}
+          <div className='flex w-[90px] h-[40px] px-1 justify-center items-center border'>個数</div>
+          {/* 値段 */}
+          <div className='flex w-[70px] h-[40px] justify-center items-center border'>金額</div>
+          <div className='flex w-[53px] h-[40px] justify-center items-center border '>決済</div>
+        </div>
       </div>
       {/* 道具の種類 0 袋、キャンプ道具*/}
-      {isList1 &&
-        <div className="absolute w-[594px] bg-white top-0 flex-col border">
-          <div className='h-[40px] flex items-center'>
-            {/* 道具の名前 袋*/}
-            <div className='flex w-[420px] h-[40px] px-5 items-center border'>名称（道具一覧）</div>
-            {/* 値 */}
-            <div className='flex w-[70px] h-[40px] px-1 justify-center items-center border'>個数</div>
-            {/* 値段 */}
-            <div className='flex w-[50px] h-[40px] justify-center items-center border'>金額</div>
-            <div className='flex w-[54px] h-[40px] justify-center items-center border '>決済</div>
-          </div>
+      {item==="1" &&
+        <div className="absolute w-[594px] bg-white top-[40px] flex-col border">
           {/* 道具の種類 */}
-          <div className='h-[40px] flex items-center pl-4 border'>袋</div>
+          <div className='h-[40px] flex items-center pl-4 '>袋</div>
           {/* mapメソッド */}
           {itemList.bag.map((bag,index) =>
-          <div key={index} className='flex border'>
-            {/* <form className='flex justify-between items-center ' action="/(SW)/SWbasic/(shop)/sword/sword.ts" method='POST'> */}
+          <div key={index} className='flex '>
+            <form action={formAction} className='flex justify-center items-center '>
               {/* 道具の名前 */}
-              <input  name="name" value={bag.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' />
+              <input name="itemName" defaultValue={bag.name} className='w-[380px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* -ボタン */}
               <button onClick={() => handleClickSubtract(index,bag.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input value={state[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' />
+              <input name='itemNum' defaultValue={state[index]} className='w-[50px] h-[25px] px-4 border bg-white ' readOnly/>
               {/* +ボタン */}
               <button onClick={() => handleClickAdd(index,bag.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input value={state[index]*bag.price} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' />
+              <input name='itemPrice' defaultValue={state[index]*bag.price} className='w-[70px] h-[25px] pl-5 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' className='flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300'>買う</button>
-            {/* </form> */}
+              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300  ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+            </form>
           </div>
           )}
           {/* 道具の種類 */}
-          <div className='h-[40px] flex items-center pl-4 border'>キャンプ道具</div>
+          <div className='h-[40px] flex items-center pl-4 '>キャンプ道具</div>
           {/* mapメソッド */}
           {itemList.camp.map((camp,index) =>
-          <div key={index} className='flex border'>
-            {/* <form className='flex justify-between items-center ' action="/(SW)/SWbasic/(shop)/sword/sword.ts" method='POST'> */}
+          <div key={index} className='flex '>
+            <form action={formAction} className='flex justify-center items-center '>
               {/* 道具の名前 */}
-              <input  name="name" value={camp.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' />
+              <input name="itemName" defaultValue={camp.name} className='w-[380px] h-[25px] px-5 bg-white ' readOnly/>
               {/* -ボタン */}
               <button onClick={() => handleClickSubtract0(index,camp.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input value={state0[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' />
+              <input name='itemNum' defaultValue={state0[index]} className='w-[50px] h-[25px] px-4 border bg-white ' readOnly/>
               {/* +ボタン */}
               <button onClick={() => handleClickAdd0(index,camp.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input value={state0[index]*camp.price} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' />
+              <input name='itemPrice' defaultValue={state0[index]*camp.price} className='w-[70px] h-[25px] pl-5 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' className='flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300'>買う</button>
-            {/* </form> */}
+              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+            </form>
           </div>
           )}
         </div>
       }
       {/* 道具の種類 1 照明、ツール*/}
-      {isList2 &&
-        <div className="absolute w-[594px] bg-white top-0 flex-col border">
-          <div className='h-[40px] flex items-center'>
-            {/* 道具の名前 袋*/}
-            <div className='flex w-[420px] h-[40px] px-5 items-center border'>名称（道具一覧）</div>
-            {/* 値 */}
-            <div className='flex w-[70px] h-[40px] px-1 justify-center items-center border'>個数</div>
-            {/* 値段 */}
-            <div className='flex w-[50px] h-[40px] justify-center items-center border'>金額</div>
-            <div className='flex w-[54px] h-[40px] justify-center items-center border '>決済</div>
-          </div>
+      {item==="2" &&
+        <div className="absolute w-[594px] bg-white top-[40px] flex-col border">
           {/* 道具の種類 */}
-          <div className='h-[40px] flex items-center pl-4 border'>照明</div>
+          <div className='h-[40px] flex items-center pl-4 '>照明</div>
           {/* mapメソッド */}
           {itemList.lighting.map((lighting,index) =>
-          <div key={index} className='flex border'>
-            {/* <form className='flex justify-between items-center ' action="/(SW)/SWbasic/(shop)/sword/sword.ts" method='POST'> */}
+          <div key={index} className='flex '>
+            <form action={formAction} className='flex justify-center items-center '>
               {/* 道具の名前 */}
-              <input  name="name" value={lighting.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' />
+              <input name="itemName" defaultValue={lighting.name} className='w-[380px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* -ボタン */}
               <button onClick={() => handleClickSubtract1(index,lighting.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input value={state1[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' />
+              <input name='itemNum' defaultValue={state1[index]} className='w-[50px] h-[25px] pl-5 border bg-white ' readOnly/>
               {/* +ボタン */}
               <button onClick={() => handleClickAdd1(index,lighting.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input value={state1[index]*lighting.price} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' />
+              <input name='itemPrice' defaultValue={state1[index]*lighting.price} className='w-[70px] h-[25px] pl-6 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' className='flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300'>買う</button>
-            {/* </form> */}
+              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300' ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+            </form>
           </div>
           )}
           {/* 道具の種類 */}
-          <div className='h-[40px] flex items-center pl-4 border'>ツール</div>
+          <div className='h-[40px] flex items-center pl-4 '>ツール</div>
           {/* mapメソッド */}
           {itemList.tool.map((tool,index) =>
-          <div key={index} className='flex border'>
-            {/* <form className='flex justify-between items-center ' action="/(SW)/SWbasic/(shop)/sword/sword.ts" method='POST'> */}
+          <div key={index} className='flex '>
+            <form action={formAction} className='flex justify-center items-center '>
               {/* 道具の名前 */}
-              <input  name="name" value={tool.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' />
+              <input name="itemName" defaultValue={tool.name} className='w-[380px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* -ボタン */}
               <button onClick={() => handleClickSubtract2(index,tool.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input value={state2[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' />
+              <input name='itemNum' defaultValue={state2[index]} className='w-[50px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* +ボタン */}
               <button onClick={() => handleClickAdd2(index,tool.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input value={state2[index]*tool.price} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' />
+              <input name='itemPrice' defaultValue={state2[index]*tool.price} className='w-[70px] h-[25px] pl-6 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' className='flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300'>買う</button>
-            {/* </form> */}
+              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300' ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+            </form>
           </div>
           )}
         </div>
       }
       {/* 道具の種類 2 その他、食料*/}
-      {isList3 &&
-        <div className="absolute w-[594px] bg-white top-0 flex-col border">
-          <div className='h-[40px] flex items-center'>
-            {/* 道具の名前 袋*/}
-            <div className='flex w-[420px] h-[40px] px-5 items-center border'>名称（道具一覧）</div>
-            {/* 値 */}
-            <div className='flex w-[70px] h-[40px] px-1 justify-center items-center border'>個数</div>
-            {/* 値段 */}
-            <div className='flex w-[50px] h-[40px] justify-center items-center border'>金額</div>
-            <div className='flex w-[54px] h-[40px] justify-center items-center border '>決済</div>
-          </div>
+      {item==="3" &&
+        <div className="absolute w-[594px] bg-white top-[40px] flex-col border">
           {/* 道具の種類 */}
-          <div className='h-[40px] flex items-center pl-4 border'>その他</div>
+          <div className='h-[40px] flex items-center pl-4 '>その他</div>
           {/* mapメソッド */}
           {itemList.others.map((others,index) =>
-          <div key={index} className='flex border'>
-            {/* <form className='flex justify-between items-center ' action="/(SW)/SWbasic/(shop)/sword/sword.ts" method='POST'> */}
+          <div key={index} className='flex '>
+            <form action={formAction} className='flex justify-center items-center '>
               {/* 道具の名前 */}
-              <input  name="name" value={others.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' />
+              <input name="itemName" defaultValue={others.name} className='w-[380px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* -ボタン */}
               <button onClick={() => handleClickSubtract3(index,others.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input value={state3[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' />
+              <input name='itemNum' defaultValue={state3[index]} className='w-[50px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* +ボタン */}
               <button onClick={() => handleClickAdd3(index,others.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input value={state3[index]*others.price} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' />
+              <input name='itemPrice' defaultValue={state3[index]*others.price} className='w-[70px] h-[25px] pl-6 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' className='flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300'>買う</button>
-            {/* </form> */}
+              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300' ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+            </form>
           </div>
           )}
           {/* 道具の種類 */}
-          <div className='h-[40px] flex items-center pl-4 border'>食料</div>
+          <div className='h-[40px] flex items-center pl-4 '>食料</div>
           {/* mapメソッド */}
           {itemList.food.map((food,index) =>
-          <div key={index} className='flex border'>
-            {/* <form className='flex justify-between items-center ' action="/(SW)/SWbasic/(shop)/sword/sword.ts" method='POST'> */}
+          <div key={index} className='flex '>
+            <form action={formAction} className='flex justify-center items-center '>
               {/* 道具の名前 */}
-              <input  name="name" value={food.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' />
+              <input name="itemName" defaultValue={food.name} className='w-[380px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* -ボタン */}
               <button onClick={() => handleClickSubtract4(index,food.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input value={state4[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' />
+              <input name='itemNum' defaultValue={state4[index]} className='w-[50px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* +ボタン */}
               <button onClick={() => handleClickAdd4(index,food.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input value={state4[index]*food.price} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' />
+              <input name='itemPrice' defaultValue={state4[index]*food.price} className='w-[70px] h-[25px] pl-7 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' className='flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300'>買う</button>
-            {/* </form> */}
+              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300' ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+            </form>
           </div>
           )}
         </div>
       }
       {/* 道具の種類 3 馬、宿*/}
-      {isList4 &&
-        <div className="absolute w-[594px] bg-white top-0 flex-col border">
-          <div className='h-[40px] flex items-center'>
-            {/* 道具の名前 袋*/}
-            <div className='flex w-[420px] h-[40px] px-5 items-center border'>名称（道具一覧）</div>
-            {/* 値 */}
-            <div className='flex w-[70px] h-[40px] px-1 justify-center items-center border'>個数</div>
-            {/* 値段 */}
-            <div className='flex w-[50px] h-[40px] justify-center items-center border'>金額</div>
-            <div className='flex w-[54px] h-[40px] justify-center items-center border '>決済</div>
-          </div>
+      {item==="4" &&
+        <div className="absolute w-[594px] bg-white top-[40px] flex-col border">
           {/* 道具の種類 */}
-          <div className='h-[40px] flex items-center pl-4 border'>馬</div>
+          <div className='h-[40px] flex items-center pl-4 '>馬</div>
           {/* mapメソッド */}
           {itemList.horse.map((horse,index) =>
-          <div key={index} className='flex border'>
-            {/* <form className='flex justify-between items-center ' action="/(SW)/SWbasic/(shop)/sword/sword.ts" method='POST'> */}
+          <div key={index} className='flex '>
+            <form action={formAction} className='flex justify-center items-center '>
               {/* 道具の名前 */}
-              <input  name="name" value={horse.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' />
+              <input name="itemName" defaultValue={horse.name} className='w-[380px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* -ボタン */}
               <button onClick={() => handleClickSubtract5(index,horse.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input value={state5[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' />
+              <input name='itemNum' defaultValue={state5[index]} className='w-[50px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* +ボタン */}
               <button onClick={() => handleClickAdd5(index,horse.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input value={state5[index]*horse.price} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' />
+              <input name='itemPrice' defaultValue={state5[index]*horse.price} className='w-[70px] h-[25px] pl-3 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' className='flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300'>買う</button>
-            {/* </form> */}
+              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300' ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+            </form>
           </div>
           )}
           {/* 道具の種類 */}
-          <div className='h-[40px] flex items-center pl-4 border'>宿</div>
+          <div className='h-[40px] flex items-center pl-4 '>宿</div>
           {/* mapメソッド */}
           {itemList.inn.map((inn,index) =>
-          <div key={index} className='flex border'>
-            {/* <form className='flex justify-between items-center ' action="/(SW)/SWbasic/(shop)/sword/sword.ts" method='POST'> */}
+          <div key={index} className='flex '>
+            <form action={formAction} className='flex justify-center items-center '>
               {/* 道具の名前 */}
-              <input  name="name" value={inn.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' />
+              <input name="itemName" defaultValue={inn.name} className='w-[380px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* -ボタン */}
               <button onClick={() => handleClickSubtract6(index,inn.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input value={state6[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' />
+              <input name='itemNum' defaultValue={state6[index]} className='w-[50px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* +ボタン */}
               <button onClick={() => handleClickAdd6(index,inn.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input value={state6[index]*inn.price} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' />
+              <input name='itemPrice' defaultValue={state6[index]*inn.price} className='w-[70px] h-[25px] pl-6 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' className='flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300'>買う</button>
-            {/* </form> */}
+              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300' ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+            </form>
           </div>
           )}
           {/* 道具の種類 */}
-          <div className='h-[40px] flex items-center pl-4 border'>宿</div>
+          <div className='h-[40px] flex items-center pl-4 '>宿</div>
           {/* mapメソッド */}
           {itemList.livingExp.map((livingExp,index) =>
-          <div key={index} className='flex border'>
-            {/* <form className='flex justify-between items-center ' action="/(SW)/SWbasic/(shop)/sword/sword.ts" method='POST'> */}
+          <div key={index} className='flex '>
+            <form action={formAction} className='flex justify-center items-center '>
               {/* 道具の名前 */}
-              <input  name="name" value={livingExp.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' />
+              <input name="itemName" defaultValue={livingExp.name} className='w-[380px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* -ボタン */}
               <button onClick={() => handleClickSubtract7(index,livingExp.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input value={state7[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' />
+              <input name='itemNum' defaultValue={state7[index]} className='w-[50px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* +ボタン */}
               <button onClick={() => handleClickAdd7(index,livingExp.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input value={state7[index]*livingExp.price} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' />
+              <input name='itemPrice' defaultValue={state7[index]*livingExp.price} className='w-[70px] h-[25px] pl-7 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' className='flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300'>買う</button>
-            {/* </form> */}
+              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300' ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+            </form>
           </div>
           )}
         </div>

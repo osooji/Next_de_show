@@ -1,5 +1,5 @@
 import React from 'react'
-import { magicListType } from '@/lib/SW/type/magicType'
+import { magicListType } from '@/lib/SW/type/(menu)/magicType'
 
 export const Magic = ({magicItems}:{magicItems:magicListType}) => {
   // const magicFetch = await fetch('C:/Users/osooji/react/Next_de_show/profill/src/lib/SW/userItems/magicItems.json');

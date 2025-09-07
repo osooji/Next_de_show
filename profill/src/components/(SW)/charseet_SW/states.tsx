@@ -1,5 +1,5 @@
 import React from 'react'
-import { usersStateType } from '@/lib/SW/type/stateType'
+import { usersStateType } from '@/lib/SW/type/(menu)/stateType'
 
 
 export const States = ({statesItems}:{statesItems:usersStateType}) => {

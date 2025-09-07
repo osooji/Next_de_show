@@ -9,3 +9,12 @@ export type armor2Type = {
     name:string,min:number,max:number,multiplication:number,addition:number
   }[]
 }
+
+export type listType = {
+  itemName:string, itemStr:number,itemPrice:number
+}
+
+export type armorActionType = {
+  success:string,
+  error:string
+}
