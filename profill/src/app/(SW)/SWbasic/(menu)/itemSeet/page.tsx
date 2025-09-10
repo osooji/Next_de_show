@@ -1,12 +1,12 @@
 import React from 'react'
-import ItemSeet from '@/components/(SW)/itemSeet/itemSeet'
+import ItemsList from '@/components/(SW)/charseet_SW/ItemsList'
 
 
 const page = () => {
   return (
     <div>
       {/* アイテム画面 */}
-      <div className=' flex justify-center items-center'><ItemSeet /></div>
+      <div><ItemsList /></div>
     </div>  )
 }
 

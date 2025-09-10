@@ -1,13 +1,18 @@
+'use client'
+
+import { store } from '@/lib/SW/type/(sign)/zustand'
 import Link from 'next/link'
 import React from 'react'
 
 const layout = ({ children }: Readonly<{children: React.ReactNode}>) => {
+  const money = store((state) => (state.money))
+
   return (
     <div className='flex justify-center'>
       <div className='w-[650px] flex flex-col justify-center'>
         <div className='flex justify-center items-center py-2'>
           <div className='w-[200px] text-[30px] flex justify-center items-center'>所持金</div>
-          <div className='w-[200px] h-[50px] text-[40px] flex justify-center items-center border rounded'>1000</div>
+          <div className='w-[200px] h-[50px] text-[40px] flex justify-center items-center border rounded'>{money}</div>
         </div>
         {/* ページジャンプ */}
         <div className='flex justify-between items-center '>

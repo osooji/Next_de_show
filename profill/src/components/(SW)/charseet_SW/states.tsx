@@ -1,12 +1,30 @@
+'use client'
+
 import React from 'react'
-import { usersStateType } from '@/lib/SW/type/(menu)/stateType'
+import { store } from '@/lib/SW/type/(sign)/zustand';
 
 
-export const States = ({statesItems}:{statesItems:usersStateType}) => {
-  // const stateFetch = await fetch('C:/Users/osooji/react/Next_de_show/profill/src/lib/SW/userItems/stateItems.json');
-  // const statesItems:usersStateType = await stateFetch.json();
+export const States = () => {
+    const A = store(state => state.A);
+    const B = store(state => state.B);
+    const C = store(state => state.C);
+    const D = store(state => state.D);
+    const E = store(state => state.E);
+    const F = store(state => state.F);
+    const G = store(state => state.G);
+    const H = store(state => state.H);
+    const DEX = store(state => state.DEX);
+    const AGI = store(state => state.AGI);
+    const INT = store(state => state.INT);
+    const STR = store(state => state.STR);
+    const HP = store(state => state.HP);
+    const SP = store(state => state.SP);
+    const allJob = store((state) => state.allJob)
+    const cloneAllJob = structuredClone(allJob);
+    const maxNum = cloneAllJob.sort((a,b) => b.Lv - a.Lv)
+
   return (
-    <div key={statesItems.userId} className='w-[360px] h-[264px]'>
+    <div className='w-[360px] h-[264px]'>
       <div className='w-[360px] h-[26px]'>能力値</div>
         <div className='flex'>
           {/* 能力値A,C,E,G */}
@@ -16,7 +34,7 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
                 <div className='z-20 text-[10px] bg-white'>A</div>
               </div>
               <div className='w-[30px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.states.A}
+              {A}
               </div>
             </div>
             <div className='w-[30px] h-[80px] flex-col relative items-center'>
@@ -24,7 +42,7 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
                 <div className='z-20 text-[10px] bg-white'>C</div>
               </div>
               <div className='w-[30px] h-[70px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.states.C}
+              {C}
               </div>
             </div>
             <div className='w-[30px] h-[40px] flex-col relative items-center'>
@@ -32,7 +50,7 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
                 <div className='z-20 text-[10px] bg-white'>E</div>
               </div>
               <div className='w-[30px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.states.E}
+              {E}
               </div>
             </div>
             <div className='w-[30px] h-[80px] flex-col relative items-center'>
@@ -40,7 +58,7 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
                 <div className='z-20 text-[10px] bg-white'>G</div>
               </div>
               <div className='w-[30px] h-[70px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.states.G}
+              {G}
               </div>
             </div>
           </div>
@@ -60,7 +78,7 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
                 <div className='z-20 text-[10px] bg-white'>B</div>
               </div>
               <div className='w-[30px] h-[70px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.states.B}
+              {B}
               </div>
             </div>
             <div className='w-[30px] h-[40px] flex-col relative items-center'>
@@ -68,7 +86,7 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
                 <div className='z-20 text-[10px] bg-white'>D</div>
               </div>
               <div className='w-[30px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.states.D}
+              {D}
               </div>
             </div>
             <div className='w-[30px] h-[80px] flex-col relative items-center'>
@@ -76,7 +94,7 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
                 <div className='z-20 text-[10px] bg-white'>F</div>
               </div>
               <div className='w-[30px] h-[70px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.states.F}
+              {F}
               </div>
             </div>
             <div className='w-[30px] h-[40px] flex-col relative items-center'>
@@ -84,7 +102,7 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
                 <div className='z-20 text-[10px] bg-white'>H</div>
               </div>
               <div className='w-[30px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.states.H}
+              {H}
               </div>
             </div>
           </div>
@@ -104,7 +122,7 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
                 <div className='z-20 text-[10px] bg-white'>器用度</div>
               </div>
               <div className='w-[40px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.stateName.DEX}
+              {DEX}
               </div>
             </div>
             <div className='w-[40px] h-[40px] flex-col relative items-center'>
@@ -112,7 +130,7 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
                 <div className='z-20 text-[10px] bg-white'>敏捷度</div>
               </div>
               <div className='w-[40px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.stateName.AGI}
+              {AGI}
               </div>
             </div>
             <div className='w-[40px] h-[40px] flex-col relative items-center'>
@@ -120,7 +138,7 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
                 <div className='z-20 text-[10px] bg-white'>知力</div>
               </div>
               <div className='w-[40px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.stateName.INT}
+              {INT}
               </div>
             </div>
             <div className='w-[40px] h-[40px] flex-col relative items-center'>
@@ -128,7 +146,7 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
                 <div className='z-20 text-[10px] bg-white'>筋力</div>
               </div>
               <div className='w-[40px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.stateName.STR}
+              {STR}
               </div>
             </div>
             <div className='w-[40px] h-[40px] flex-col relative items-center'>
@@ -136,7 +154,7 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
                 <div className='z-20 text-[10px] bg-white'>生命力</div>
               </div>
               <div className='w-[40px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.stateName.HP}
+              {HP}
               </div>
             </div>
             <div className='w-[40px] h-[40px] flex-col relative items-center'>
@@ -144,7 +162,7 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
                 <div className='z-20 text-[10px] bg-white'>精神力</div>
               </div>
               <div className='w-[40px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.stateName.SP}
+              {SP}
               </div>
             </div>
           </div>
@@ -157,32 +175,32 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
               <div className='z-20 text-[6px] bg-white'>（ボーナス）</div>
               </div>
               <div className='w-[40px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.stateBonus.DEX_Bonus}
+              +{Math.floor(DEX/6)}
               </div>
             </div>
             <div className='w-[40px] h-[40px] flex-col relative items-center'>
               <div className='w-[40px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.stateBonus.AGI_Bonus}
+              +{Math.floor(AGI/6)}
               </div>
             </div>
             <div className='w-[40px] h-[40px] flex-col relative items-center'>
               <div className='w-[40px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.stateBonus.INT_Bonus}
+              +{Math.floor(INT/6)}
               </div>
             </div>
             <div className='w-[40px] h-[40px] flex-col relative items-center'>
               <div className='w-[40px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.stateBonus.STR_Bonus}
+              +{Math.floor(STR/6)}
               </div>
             </div>
             <div className='w-[40px] h-[40px] flex-col relative items-center'>
               <div className='w-[40px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.stateBonus.HP_Bonus}
+              +{Math.floor(HP/6)}
               </div>
             </div>
             <div className='w-[40px] h-[40px] flex-col relative items-center'>
               <div className='w-[40px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-              {statesItems.stateBonus.SP_Bonus}
+              +{Math.floor(SP/6)}
               </div>
             </div>
           </div>
@@ -199,15 +217,14 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
             </div>
             {/* 抵抗、ダメージ */}
             <div className='w-[180px] h-[80px] flex-col items-center'>
-              {statesItems.resists.map((resist,index) =>
-                <div key={index} className='w-[180px] h-[40px] flex'>
+                <div className='w-[180px] h-[40px] flex'>
                   {/* 抵抗 */}
                   <div className='flex w-[40px] h-[40px] relative'>
                     <div className='w-[40px] h-[10px] flex justify-center items-center absolute '>
                       <div className='z-20 text-[10px] bg-white'>抵抗力</div>
                     </div>
                     <div className='w-[40px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-                      {resist.RES}
+                    {Math.floor(HP/6)+maxNum[0].Lv}
                     </div>
                   </div>
                   {/* 空欄 */}
@@ -218,11 +235,32 @@ export const States = ({statesItems}:{statesItems:usersStateType}) => {
                       <div className='z-20 text-[10px] bg-white'>ダメージ</div>
                     </div>
                     <div className='w-[130px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
-                      {resist.DAM}
+                      なし
                     </div>
                   </div>
                 </div>
-              )}
+                <div className='w-[180px] h-[40px] flex'>
+                  {/* 抵抗 */}
+                  <div className='flex w-[40px] h-[40px] relative'>
+                    <div className='w-[40px] h-[10px] flex justify-center items-center absolute '>
+                      <div className='z-20 text-[10px] bg-white'>抵抗力</div>
+                    </div>
+                    <div className='w-[40px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
+                    {Math.floor(SP/6)+maxNum[0].Lv}
+                    </div>
+                  </div>
+                  {/* 空欄 */}
+                  <div className='flex w-[10px] h-[40px] '></div>
+                  {/* ダメージ */}
+                  <div className='flex-col w-[130px] h-[40px] relative'>
+                    <div className='w-[130px] h-[10px] flex justify-center items-center absolute '>
+                      <div className='z-20 text-[10px] bg-white'>ダメージ</div>
+                    </div>
+                    <div className='w-[130px] h-[30px] border absolute bottom-[5px] flex justify-center items-center text-lg'>
+                      なし
+                    </div>
+                  </div>
+                </div>
           </div>
         </div>
       </div>

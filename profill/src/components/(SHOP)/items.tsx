@@ -1,20 +1,37 @@
 "use client"
-import { itemBuy } from '@/action/actions'
-import { itemActionType, itemType } from '@/lib/SW/type/(shop)/itemListType'
+// import { itemBuy } from '@/action/actions'
+import {  itemType } from '@/lib/SW/type/(shop)/itemListType'
+import { store } from '@/lib/SW/type/(sign)/zustand'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import React, { useActionState, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Items = ({itemList}:{itemList:itemType}) => {
-    const [formState, formAction, isPending] = useActionState<itemActionType>(itemBuy,{success:'',error:''})
-    const [state, setState] = useState<number[]>([1,1,1,1,1,1])
-    const [state0, setState0] = useState<number[]>([1,1,1,1,1])
-    const [state1, setState1] = useState<number[]>([1,1,1,1])
-    const [state2, setState2] = useState<number[]>([1,1,1,1])
-    const [state3, setState3] = useState<number[]>([1,1,1,1])
-    const [state4, setState4] = useState<number[]>([1,1,1,1])
-    const [state5, setState5] = useState<number[]>([1,1,1,1,1,1])
-    const [state6, setState6] = useState<number[]>([1,1,1])
-    const [state7, setState7] = useState<number[]>([1])
+    // const [formState, formAction, isPending] = useActionState<itemActionType>(itemBuy,{success:'',error:')
+  const [state, setState] = useState<number[]>([1,1,1,1,1,1])
+  const [state0, setState0] = useState<number[]>([1,1,1,1,1])
+  const [state1, setState1] = useState<number[]>([1,1,1,1])
+  const [state2, setState2] = useState<number[]>([1,1,1,1])
+  const [state3, setState3] = useState<number[]>([1,1,1,1])
+  const [state4, setState4] = useState<number[]>([1,1,1,1])
+  const [state5, setState5] = useState<number[]>([1,1,1,1,1,1])
+  const [state6, setState6] = useState<number[]>([1,1,1])
+  const [state7, setState7] = useState<number[]>([1])
+
+  const decrementMoney = store((state) => (state.decrementMoney))
+  const addItemsList = store((state) => (state.incrementItems))
+  // const reItems = store((state) => (state.reItems))
+  const money = store((state) => (state.money))
+
+  const formAction = (formData:FormData) => {
+    const name = formData.get('itemName') as string
+    const value = Number(formData.get('itemNum'));
+    const price = Number(formData.get('itemPrice'));
+    if(money - price > 0) {
+      decrementMoney(price);
+      addItemsList({name,value});
+      // reItems()
+    } else alert('お金が足りません')
+  }
 
     const handleClickAdd = (index:number, max:number) => {
       const num = state.map((s:number,i:number) => {
@@ -205,15 +222,18 @@ const Items = ({itemList}:{itemList:itemType}) => {
     const params = new URLSearchParams(searchParams);
     params.set("item",itemName)
     router.push(`${pathName}?${params}`)
+    // location.reload()
   }
 
   const numList = [1,2,3,4];
+
+useEffect(() => {},[])
 
   return (
     <div className='relative w-[594px] h-[420px] m-4 bg-white flex justify-center items-center border'>
       <div className='absolute h-[420px] flex flex-col  right-[-50px]'>
         {numList.map((num,index) => (
-          <button key={num} onClick={() => handleList(`${num}`)} className={`z-20 w-[50px] h-[50px] bg-white top-[${index*42}px] border focus:bg-black focus:text-white hover:bg-red-300`}>{num}</button>
+          <button key={num} onClick={() => handleList(`${num}`)} className={`z-20 w-[50px] h-[50px] bg-white top-[${index*42}px] border focus:bg-black focus:text-white hover:bg-red-300`} >{num}</button>
           ))}
       </div>
       {/*アイテム画面 */}
@@ -247,15 +267,15 @@ const Items = ({itemList}:{itemList:itemType}) => {
               {/* 道具の名前 */}
               <input name="itemName" defaultValue={bag.name} className='w-[380px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* -ボタン */}
-              <button onClick={() => handleClickSubtract(index,bag.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
+              <button type='button' onClick={() => handleClickSubtract(index,bag.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
               <input name='itemNum' defaultValue={state[index]} className='w-[50px] h-[25px] px-4 border bg-white ' readOnly/>
               {/* +ボタン */}
-              <button onClick={() => handleClickAdd(index,bag.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
+              <button type='button' onClick={() => handleClickAdd(index,bag.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
               <input name='itemPrice' defaultValue={state[index]*bag.price} className='w-[70px] h-[25px] pl-5 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300  ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+              <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300`}>買う</button>
             </form>
           </div>
           )}
@@ -268,15 +288,15 @@ const Items = ({itemList}:{itemList:itemType}) => {
               {/* 道具の名前 */}
               <input name="itemName" defaultValue={camp.name} className='w-[380px] h-[25px] px-5 bg-white ' readOnly/>
               {/* -ボタン */}
-              <button onClick={() => handleClickSubtract0(index,camp.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
+              <button type='button' onClick={() => handleClickSubtract0(index,camp.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
               <input name='itemNum' defaultValue={state0[index]} className='w-[50px] h-[25px] px-4 border bg-white ' readOnly/>
               {/* +ボタン */}
-              <button onClick={() => handleClickAdd0(index,camp.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
+              <button type='button' onClick={() => handleClickAdd0(index,camp.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
               <input name='itemPrice' defaultValue={state0[index]*camp.price} className='w-[70px] h-[25px] pl-5 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+              <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300`}>買う</button>
             </form>
           </div>
           )}
@@ -294,15 +314,15 @@ const Items = ({itemList}:{itemList:itemType}) => {
               {/* 道具の名前 */}
               <input name="itemName" defaultValue={lighting.name} className='w-[380px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* -ボタン */}
-              <button onClick={() => handleClickSubtract1(index,lighting.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
+              <button type='button' onClick={() => handleClickSubtract1(index,lighting.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
               <input name='itemNum' defaultValue={state1[index]} className='w-[50px] h-[25px] pl-5 border bg-white ' readOnly/>
               {/* +ボタン */}
-              <button onClick={() => handleClickAdd1(index,lighting.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
+              <button type='button' onClick={() => handleClickAdd1(index,lighting.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
               <input name='itemPrice' defaultValue={state1[index]*lighting.price} className='w-[70px] h-[25px] pl-6 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300' ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+              <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300`}>買う</button>
             </form>
           </div>
           )}
@@ -315,15 +335,15 @@ const Items = ({itemList}:{itemList:itemType}) => {
               {/* 道具の名前 */}
               <input name="itemName" defaultValue={tool.name} className='w-[380px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* -ボタン */}
-              <button onClick={() => handleClickSubtract2(index,tool.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
+              <button type='button' onClick={() => handleClickSubtract2(index,tool.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
               <input name='itemNum' defaultValue={state2[index]} className='w-[50px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* +ボタン */}
-              <button onClick={() => handleClickAdd2(index,tool.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
+              <button type='button' onClick={() => handleClickAdd2(index,tool.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
               <input name='itemPrice' defaultValue={state2[index]*tool.price} className='w-[70px] h-[25px] pl-6 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300' ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+              <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300`}>買う</button>
             </form>
           </div>
           )}
@@ -341,15 +361,15 @@ const Items = ({itemList}:{itemList:itemType}) => {
               {/* 道具の名前 */}
               <input name="itemName" defaultValue={others.name} className='w-[380px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* -ボタン */}
-              <button onClick={() => handleClickSubtract3(index,others.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
+              <button type='button' onClick={() => handleClickSubtract3(index,others.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
               <input name='itemNum' defaultValue={state3[index]} className='w-[50px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* +ボタン */}
-              <button onClick={() => handleClickAdd3(index,others.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
+              <button type='button' onClick={() => handleClickAdd3(index,others.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
               <input name='itemPrice' defaultValue={state3[index]*others.price} className='w-[70px] h-[25px] pl-6 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300' ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+              <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300`}>買う</button>
             </form>
           </div>
           )}
@@ -362,15 +382,15 @@ const Items = ({itemList}:{itemList:itemType}) => {
               {/* 道具の名前 */}
               <input name="itemName" defaultValue={food.name} className='w-[380px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* -ボタン */}
-              <button onClick={() => handleClickSubtract4(index,food.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
+              <button type='button' onClick={() => handleClickSubtract4(index,food.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
               <input name='itemNum' defaultValue={state4[index]} className='w-[50px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* +ボタン */}
-              <button onClick={() => handleClickAdd4(index,food.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
+              <button type='button' onClick={() => handleClickAdd4(index,food.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
               <input name='itemPrice' defaultValue={state4[index]*food.price} className='w-[70px] h-[25px] pl-7 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300' ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+              <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300`}>買う</button>
             </form>
           </div>
           )}
@@ -388,15 +408,15 @@ const Items = ({itemList}:{itemList:itemType}) => {
               {/* 道具の名前 */}
               <input name="itemName" defaultValue={horse.name} className='w-[380px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* -ボタン */}
-              <button onClick={() => handleClickSubtract5(index,horse.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
+              <button type='button' onClick={() => handleClickSubtract5(index,horse.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
               <input name='itemNum' defaultValue={state5[index]} className='w-[50px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* +ボタン */}
-              <button onClick={() => handleClickAdd5(index,horse.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
+              <button type='button' onClick={() => handleClickAdd5(index,horse.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
               <input name='itemPrice' defaultValue={state5[index]*horse.price} className='w-[70px] h-[25px] pl-3 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300' ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+              <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300`}>買う</button>
             </form>
           </div>
           )}
@@ -409,15 +429,15 @@ const Items = ({itemList}:{itemList:itemType}) => {
               {/* 道具の名前 */}
               <input name="itemName" defaultValue={inn.name} className='w-[380px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* -ボタン */}
-              <button onClick={() => handleClickSubtract6(index,inn.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
+              <button type='button' onClick={() => handleClickSubtract6(index,inn.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
               <input name='itemNum' defaultValue={state6[index]} className='w-[50px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* +ボタン */}
-              <button onClick={() => handleClickAdd6(index,inn.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
+              <button type='button' onClick={() => handleClickAdd6(index,inn.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
               <input name='itemPrice' defaultValue={state6[index]*inn.price} className='w-[70px] h-[25px] pl-6 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300' ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+              <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300`}>買う</button>
             </form>
           </div>
           )}
@@ -430,15 +450,15 @@ const Items = ({itemList}:{itemList:itemType}) => {
               {/* 道具の名前 */}
               <input name="itemName" defaultValue={livingExp.name} className='w-[380px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* -ボタン */}
-              <button onClick={() => handleClickSubtract7(index,livingExp.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
+              <button type='button' onClick={() => handleClickSubtract7(index,livingExp.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
               <input name='itemNum' defaultValue={state7[index]} className='w-[50px] h-[25px] px-5 border bg-white ' readOnly/>
               {/* +ボタン */}
-              <button onClick={() => handleClickAdd7(index,livingExp.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
+              <button type='button' onClick={() => handleClickAdd7(index,livingExp.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
               <input name='itemPrice' defaultValue={state7[index]*livingExp.price} className='w-[70px] h-[25px] pl-7 bg-white border' readOnly/>
               {/* 買うボタン */}
-              <button type='submit' disabled={isPending} className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300' ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+              <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300`}>買う</button>
             </form>
           </div>
           )}

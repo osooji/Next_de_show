@@ -1,10 +1,23 @@
 "use client"
-import { magicBuy } from '@/action/actions';
+// import { magicBuy } from '@/action/actions';
 import { magicItemType } from '@/lib/SW/type/(shop)/magicListType';
-import React, { useActionState } from 'react'
+import { store } from '@/lib/SW/type/(sign)/zustand';
+import React, { } from 'react'
 
 const Magic = ({magicItem}:{magicItem:magicItemType}) => {
-  const [formState, formAction,isPending] = useActionState<magicItemType>(magicBuy,{success:'',error:''})
+  const money = store((state) => (state.money))
+  const decrementMoney = store((state) => (state.decrementMoney))
+  const addMagicList = store((state) => (state.addMagicList))
+  // const [formState, formAction,isPending] = useActionState<magicItemType>(magicBuy,{success:'',error:''})
+    const formAction = (formData:FormData) => {
+      const name = formData.get('magicItem') as string
+      const value = Number(formData.get('magicSp'));
+      const price = Number(formData.get('itemPrice'));
+      if(money - price > 0) {
+        decrementMoney(price);
+        addMagicList({name,value});
+      } else alert('お金が足りません')
+    }
 
   return (
   <div className="relative w-[594px] h-[420px] bg-white m-4 flex-col justify-center items-center border">
@@ -30,7 +43,7 @@ const Magic = ({magicItem}:{magicItem:magicItemType}) => {
           {/* 値段 */}
           <input name="itemPrice" defaultValue={rune.price} className='flex w-[100px] h-[25px] px-7 justify-center items-center border' readOnly />
           {/* 買うボタン */}
-          <button type='submit' disabled={isPending} className={`flex w-[100px] h-[25px] justify-center items-center border hover:bg-slate-300' ${isPending&&'cursor-not-allowed'}`}>{isPending ? 'OK':'買う'}</button>
+          <button type='submit' className={`flex w-[100px] h-[25px] justify-center items-center border hover:bg-slate-300`}>買う</button>
         </form>
       </div>
       )}

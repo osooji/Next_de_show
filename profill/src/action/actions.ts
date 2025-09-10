@@ -8,23 +8,30 @@
 import { PrismaClient } from "@prisma/client";
 import { cookies } from 'next/headers';
 import { signUpType } from '@/lib/SW/type/(sign)';
+import { store } from "@/lib/SW/type/(sign)/zustand";
 
 const prisma = new PrismaClient();
 
 export async function signUp(state:signUpType,formData:FormData):Promise<signUpType>{
+  const setName = store(state => state.setName)
+  const setRace = store(state => state.setRace)
+  const setSex = store(state => state.setSex)
   const stateClone:signUpType = structuredClone(state);
   try{
     const ID = formData.get('ID') as string;
     const name = formData.get('name') as string;
     const race = formData.get('race') as string;
     const sex = formData.get('sex') as string;
+    setName(name)
+    setRace(race)
+    setSex(sex)
     stateClone.data.ID = ID;
     stateClone.data.name = name;
     stateClone.data.race = race;
     stateClone.data.sex = sex;
 
-    if (!ID || !name) {stateClone.message = '入力が足りない'; throw new Error(stateClone.message)};
-    await prisma.Sign.create({
+    if (!ID || !name || !race || !sex) {stateClone.message = '入力が足りない'; throw new Error(stateClone.message)};
+    await prisma.signUp.create({
       data:{
         ID,
         name,
@@ -33,7 +40,7 @@ export async function signUp(state:signUpType,formData:FormData):Promise<signUpT
       }
     })
     stateClone.message='成功';
-    (await cookies()).set({name:'ID',value:stateClone.data.ID,})
+    (await cookies()).set({name:'ID',value:ID,})
     // (await cookies()).set({name:'name',value:stateClone.data.name})
     return stateClone;
   }catch(err) {
@@ -42,8 +49,14 @@ export async function signUp(state:signUpType,formData:FormData):Promise<signUpT
   };
 }
 
-export const signOut = async (ID:string) => {
-  prisma.Sign.delete({
+export const signGet = async(ID:string) => {
+  await prisma.signUp.findUnique({
+    where:ID
+  })
+}
+
+export const signDelete = async (ID:string) => {
+  await prisma.signUp.delete({
     where:{
       ID:ID,
     }

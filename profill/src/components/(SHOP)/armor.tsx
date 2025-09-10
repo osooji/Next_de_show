@@ -1,7 +1,7 @@
 "use client"
 // import { armorBuy } from '@/action/actions';
 import { armor1Type, armor2Type } from '@/lib/SW/type/(shop)/armorListType'
-import { useStore } from '@/lib/SW/type/(sign)/zustand';
+import { store } from '@/lib/SW/type/(sign)/zustand';
 import React, { useState } from 'react'
 
 
@@ -10,14 +10,43 @@ const Armor = ({armors1, armors2}:{armors1:armor1Type, armors2:armor2Type}) => {
   // const [formState, formAction,isPending] = useActionState<armorActionType>(armorBuy,
   // {success:'',error:''}
   // );
-  const { armorList, addArmorList} = useStore()
+  const decrementMoney = store((state) => (state.decrementMoney))
+  const addArmorList = store((state) => (state.addArmorList))
+  // const reArmorList = store((state) => (state.reArmorList))
+  const addShieldList = store((state) => (state.addShieldList))
+  // const reShieldList = store((state) => (state.reShieldList))
+  const money = store((state) => (state.money))
+
+  const formAction = (formData:FormData) => {
+    const name = formData.get('itemName') as string
+    const value = Number(formData.get('itemStr'));
+    const price = Number(formData.get('itemPrice'));
+    if(money - price > 0) {
+      decrementMoney(price);
+      addArmorList({name,value});
+      // reArmorList()
+    } else alert('お金が足りません')
+
+  }
+  const formActionShield = (formData:FormData) => {
+    const name = formData.get('itemName') as string
+    const value = Number(formData.get('itemStr'));
+    const price = Number(formData.get('itemPrice'));
+    if(money - price > 0) {
+      decrementMoney(price);
+      addShieldList({name,value});
+      // reShieldList()
+    } else alert('お金が足りません')
+
+  }
     // 非金属の筋力値
-  const [state, setState] = useState<number[]>([1,2,5])
+  const [state, setState] = useState([1,2,5])
     // 金属の筋力値
-  const [stateArmor2, setStateArmor2] = useState<number[]>([5,8,10,11,13])
+  const [stateArmor2, setStateArmor2] = useState([5,8,10,11,13])
 
     // 非金属の筋力値のプラス
-  const handleClickAdd = (index:number, max:number) => {
+  const handleClickAdd = (event:React.MouseEvent<HTMLButtonElement>,index:number, max:number) => {
+    event.preventDefault()
     const str = state.map((s:number,i:number) => {
       if (i === index && max > state[index]) {
         return s+1
@@ -75,24 +104,24 @@ const Armor = ({armors1, armors2}:{armors1:armor1Type, armors2:armor2Type}) => {
       <div className='flex w-[54px] h-[40px] justify-center items-center border '>決済</div>
     </div>
     {/* 防具の種類 */}
-    <div className='h-[40px] flex items-center pl-4 '>非金属鎧</div>
+    <div className='w-full h-[40px] flex items-center pl-4 '>非金属鎧</div>
       {/* mapメソッド */}
       {armors1.noMetal.map((armor,index) =>
       <div key={index}>
-        <form action={formAction} className='flex justify-center items-center '>
+        <form action={formAction} className='flex'>
           {/* 防具の名前 */}
           <input name="itemName" defaultValue={armor.name} className='flex w-[280px] h-[25px] px-5 items-center border ' readOnly />
           {/* 必要筋力 */}
           <div className='flex w-[140px] h-[25px] px-2 justify-center items-center border'>必要筋力:{armor.min}~{armor.max}</div>
           {/* 筋力の数値を選択 */}
           {/* -ボタン */}
-          <button onClick={() => handleClickSubtract(index,armor.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border hover:bg-slate-300' >-</button>
+          <button type='button' onClick={() => handleClickSubtract(index,armor.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border hover:bg-slate-300' >-</button>
           {/* 値 */}
-          <input name="itemStr" defaultValue={state[index]} className='w-[30px] h-[25px] px-1 flex justify-center items-center border' readOnly />
+          <input name="itemStr" defaultValue={state[index]} className='w-[30px] h-[25px] pl-1 flex justify-center border' readOnly />
           {/* +ボタン */}
-          <button onClick={() => handleClickAdd(index,armor.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border hover:bg-slate-300' >+</button>
+          <button  onClick={(event) => handleClickAdd(event,index,armor.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border hover:bg-slate-300' >+</button>
           {/* 値段 */}
-          <input name="itemPrice" defaultValue={state[index]*armor.multiplication+armor.addition} className='w-[50px] h-[25px] px-2 flex justify-center items-center border' readOnly />
+          <input name="itemPrice" defaultValue={state[index]*armor.multiplication+armor.addition} className='w-[50px] h-[25px] px-2 border' readOnly />
           {/* 買うボタン */}
           <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border hover:bg-slate-300 }`}>買う</button>
         </form>
@@ -110,11 +139,11 @@ const Armor = ({armors1, armors2}:{armors1:armor1Type, armors2:armor2Type}) => {
           <div className='flex w-[140px] h-[25px] px-2 justify-center items-center border'>必要筋力:{armor.min}~{armor.max}</div>
           {/* 筋力の数値を選択 */}
           {/* -ボタン */}
-          <button onClick={() => handleClickSubtract2(index,armor.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border hover:bg-slate-300' >-</button>
+          <button type='button' onClick={() => handleClickSubtract2(index,armor.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border hover:bg-slate-300' >-</button>
           {/* 値 */}
           <input name='itemStr' defaultValue={stateArmor2[index]} className='flex justify-center w-[30px] h-[25px] px-1 items-center border' readOnly />
           {/* +ボタン */}
-          <button onClick={() => handleClickAdd2(index,armor.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border hover:bg-slate-300' >+</button>
+          <button type='button' onClick={() => handleClickAdd2(index,armor.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border hover:bg-slate-300' >+</button>
           {/* 値段 */}
           <input name='itemPrice' defaultValue={stateArmor2[index]*armor.multiplication+armor.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center border' readOnly />
           {/* 買うボタン */}
@@ -125,7 +154,7 @@ const Armor = ({armors1, armors2}:{armors1:armor1Type, armors2:armor2Type}) => {
     {/* 防具の種類 */}
     <div className='h-[40px] flex items-center pl-4 '>盾</div>
     <div>
-      <form action={formAction} className="flex justify-between">
+      <form action={formActionShield} className="flex justify-between">
         {/* 防具の名前 */}
         <input name="itemName" defaultValue="スモールシールド" className='flex w-[280px] h-[25px] px-5 items-center border' readOnly />
         {/* 必要筋力 */}
@@ -139,7 +168,7 @@ const Armor = ({armors1, armors2}:{armors1:armor1Type, armors2:armor2Type}) => {
     </div>
     <div >
       {/* 防具の名前 */}
-      <form action={formAction} className="flex justify-between items-center">
+      <form action={formActionShield} className="flex justify-between items-center">
         <input name="itemName" defaultValue="ラージシールド" className='flex w-[280px] h-[25px] px-5 items-center border bg-white' readOnly />
         {/* 必要筋力 */}
         <div className='flex w-[140px] h-[25px] justify-center items-center border bg-white'>必要筋力:13</div>
