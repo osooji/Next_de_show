@@ -29,7 +29,6 @@ const Bard = ({bardSkill}:{bardSkill:bardSkillList}) => {
             <div className='flex w-[200px] h-[45px] px-5 items-center border'>{bard.name}</div>
             <div className='flex w-[100px] h-[45px] justify-center items-center border'>{bard.prot}</div>
             <div className='flex w-[100px] h-[45px] justify-center items-center border'>{bard.num}</div>
-            <div className='flex w-[100px] h-[45px] justify-center items-center border'>{bard.limit}</div>
             <div className='flex w-[94px] h-[45px] justify-center items-center border'>{bard.reTry}</div>
           </div>
         ))}
