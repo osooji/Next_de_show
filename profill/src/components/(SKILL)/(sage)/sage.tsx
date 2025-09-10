@@ -15,8 +15,6 @@ const Sage = ({sageSkill}:{sageSkill:sageSkillList}) => {
           <div className='flex w-[100px] h-[45px] justify-center items-center border'>ステータス</div>
           {/* 消費 */}
           <div className='flex w-[100px] h-[45px] justify-center items-center border'>消費</div>
-          {/* 効果時間 */}
-          <div className='flex w-[100px] h-[45px] justify-center items-center border'>限界</div>
           {/* 再試行 */}
           <div className='flex w-[94px] h-[45px] justify-center items-center border '>再試行</div>
         </div>
@@ -28,7 +26,6 @@ const Sage = ({sageSkill}:{sageSkill:sageSkillList}) => {
             <div className='flex w-[200px] h-[45px] px-5 items-center border'>{sage.name}</div>
             <div className='flex w-[100px] h-[45px] justify-center items-center border'>{sage.prot}</div>
             <div className='flex w-[100px] h-[45px] justify-center items-center border'>{sage.num}</div>
-            <div className='flex w-[100px] h-[45px] justify-center items-center border'>{sage.limit}</div>
             <div className='flex w-[94px] h-[45px] justify-center items-center border'>{sage.reTry}</div>
           </div>
         ))}
