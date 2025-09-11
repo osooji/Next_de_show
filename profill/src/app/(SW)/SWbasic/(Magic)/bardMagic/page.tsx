@@ -1,13 +1,13 @@
 import BardMagic from '@/components/(Magic)/(bard)/bard'
 import { bardMagicList } from '@/lib/SW/MagicList/bardMagic'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 
 const page = () => {
   return (
     <div>
       {/* プリースト技能 */}
-      <div><BardMagic bardMagicList={bardMagicList}/></div>
+      <Suspense><BardMagic bardMagicList={bardMagicList}/></Suspense>
     </div>
   )
 }

@@ -1,12 +1,12 @@
 import Wizard from '@/components/(Magic)/(wizard)/wizard'
 import { wizardMagicList } from '@/lib/SW/MagicList/wizard'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 const page = () => {
   return (
     <div>
       {/* ソーサラー技能 */}
-      <div><Wizard wizardMagicList={wizardMagicList}/></div>
+      <Suspense><Wizard wizardMagicList={wizardMagicList}/></Suspense>
     </div>
   )
 }

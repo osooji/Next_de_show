@@ -1,13 +1,13 @@
 import PriestSect from '@/components/(Magic)/(priestSect)/priestSect'
 import { priestSectList } from '@/lib/SW/MagicList/priestSectList'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 
 const page = () => {
   return (
     <div>
       {/* プリースト技能 */}
-      <div><PriestSect priestSectList={priestSectList} /></div>
+      <Suspense><PriestSect priestSectList={priestSectList} /></Suspense>
     </div>
   )
 }

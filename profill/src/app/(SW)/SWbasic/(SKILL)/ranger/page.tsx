@@ -1,12 +1,12 @@
 import Ranger from '@/components/(SKILL)/(ranger)/ranger'
 import { rangerSkill } from '@/lib/SW/skillList/ranger'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 const page = () => {
   return (
     <div>
     {/* レンジャー技能 */}
-    <div><Ranger rangerSkill={rangerSkill}/></div>
+    <Suspense><Ranger rangerSkill={rangerSkill}/></Suspense>
     </div>
   )
 }

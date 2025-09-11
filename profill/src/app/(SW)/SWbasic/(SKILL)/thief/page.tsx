@@ -1,13 +1,13 @@
 import Thief from '@/components/(SKILL)/(thief)/thief'
 import { thiefSkill } from '@/lib/SW/skillList/thief'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 
 const page = () => {
   return (
     <div>
       {/* シーフ技能 */}
-      <div><Thief thiefSkill={thiefSkill}/></div>
+      <Suspense><Thief thiefSkill={thiefSkill}/></Suspense>
     </div>
   )
 }
