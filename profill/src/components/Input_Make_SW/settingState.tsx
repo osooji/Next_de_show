@@ -2,9 +2,10 @@
 
 // import { jobList, skillJob } from '@/lib/SW/(job)/JobList';
 import { store } from '@/lib/SW/type/(sign)/zustand'
-import React, {  } from 'react'
+import React, { useState } from 'react'
 
 const SettingState = () => {
+  const [submit, setSubmit] = useState<boolean>(false)
 
   const stateA = store(state => state.A);
   const stateB = store(state => state.B);
@@ -125,6 +126,15 @@ const SettingState = () => {
     }
     incrementSP(stateG,stateH)
   }
+  const submitButton = () => {
+    incrementDEX(stateA,stateB)
+    incrementAGI(stateC,stateB)
+    incrementINT(stateC,stateD)
+    incrementSTR(stateE,stateF)
+    incrementHP(stateG,stateF)
+    incrementSP(stateG,stateH)
+    setSubmit(true)
+  }
   const exeA = () => {
     if(exe > 1000) {
       decrementExe(1000)
@@ -187,14 +197,17 @@ const SettingState = () => {
   }
   const handleAddAllJob = (name:string,Lv:number) =>{
     const product = {name,Lv}
-    if(((name === 'bard' || 'sage' || 'ranger') && exe > 500*Lv) || exe > 1000*Lv || (name === 'wizard' && exe > 1000*Lv+1000)) {
+    if(((name === 'bard' || name === 'sage' || name === 'ranger') && exe > 500*Lv) || exe > 1000*Lv || (name === 'wizard' && exe > 1000*Lv+1000)) {
+    if(name === 'bard' || name === 'sage' || name === 'ranger'){decrementExe(500+Lv*500)}
+    else if (name === 'wizard'){ decrementExe(1000+Lv*1000)}
+    else decrementExe(1000+Lv*1000)
     addAllJob(product)
     }
   }
 
   return (
     <div className="flex justify-center items-center  shadow-2xl">
-      {(stateA && stateB && stateC && stateD && stateE && stateF && stateG && stateH) ?
+      {submit} ?
       <div className='flex'>
         <div className=' w-[160px] flex-col justify-center bg-white'>
           <div className='flex justify-center items-center py-1 bg-white'>経験値:{exe}</div>
@@ -253,6 +266,9 @@ const SettingState = () => {
               <div className='w-[30px] flex justify-center items-center border'>{stateH}
               </div>
               <button onClick={exeH} className='w-[40px] flex justify-center items-center border hover:bg-slate-500'>+1</button>
+            </div>
+            <div className='flex items-center justify-center p-2 gap-2'>
+              <button onClick={submitButton} className='w-[100px] flex justify-center items-center border hover:bg-slate-500'>決定</button>
             </div>
           </div>
           <div className='w-[150px] flex-col justify-center bg-white'>
