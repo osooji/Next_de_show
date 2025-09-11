@@ -207,7 +207,7 @@ const SettingState = () => {
 
   return (
     <div className="flex justify-center items-center  shadow-2xl">
-      {submit} ?
+      {(submit) ?
       <div className='flex'>
         <div className=' w-[160px] flex-col justify-center bg-white'>
           <div className='flex justify-center items-center py-1 bg-white'>経験値:{exe}</div>
@@ -266,9 +266,6 @@ const SettingState = () => {
               <div className='w-[30px] flex justify-center items-center border'>{stateH}
               </div>
               <button onClick={exeH} className='w-[40px] flex justify-center items-center border hover:bg-slate-500'>+1</button>
-            </div>
-            <div className='flex items-center justify-center p-2 gap-2'>
-              <button onClick={submitButton} className='w-[100px] flex justify-center items-center border hover:bg-slate-500'>決定</button>
             </div>
           </div>
           <div className='w-[150px] flex-col justify-center bg-white'>
@@ -340,6 +337,9 @@ const SettingState = () => {
           <div className='w-[40px] h-[20px] flex justify-center items-center border'>{stateH}
           </div>
           <button onClick={H} className='w-[40px] h-[20px] flex justify-center items-center text-[10px] border hover:bg-slate-500'>ボタン</button>
+        </div>
+        <div className='flex items-center justify-center p-2 gap-2'>
+          <button onClick={submitButton} className='w-[100px] flex justify-center items-center border hover:bg-slate-500'>決定</button>
         </div>
         {/* 器用度 */}
         {/* <div className='w-[160px] h-[30px] flex justify-around items-center'>
