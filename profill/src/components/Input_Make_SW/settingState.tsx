@@ -34,39 +34,83 @@ const SettingState = () => {
   const addAllJob = store(state => state.addAllJob);
 
   const A = () => {
-    if(!stateA) {setStateA(Math.ceil(Math.random()*6));
-    incrementDEX(stateA,stateB)}
+    if(!stateA)
+    setStateA(Math.ceil(Math.random()*12));
+    if(!stateB){
+      setStateB(0)
+    }
+    incrementDEX(stateA,stateB)
   }
   const B = () => {
-    if(!stateB) setStateB(Math.ceil(Math.random()*6));
+    if(!stateB)
+    setStateB(Math.ceil(Math.random()*12));
+    if(!stateA){
+      setStateA(0)
+    }
+    if(!stateC){
+      setStateC(0)
+    }
     incrementDEX(stateA,stateB)
     incrementAGI(stateC,stateB)
   }
   const C = () => {
-    if(!stateC) setStateC(Math.ceil(Math.random()*6));
+    if(!stateC)
+    setStateC(Math.ceil(Math.random()*12));
+    if(!stateB){
+      setStateB(0)
+    }
+    if(!stateC){
+      setStateC(0)
+    }
     incrementAGI(stateC,stateB)
     incrementINT(stateC,stateD)
   }
   const D = () => {
-    if(!stateD) setStateD(Math.ceil(Math.random()*6));
+    if(!stateD)
+    setStateD(Math.ceil(Math.random()*12));
+    if(!stateC){
+      setStateC(0)
+    }
     incrementINT(stateC,stateD)
   }
   const E = () => {
-    if(!stateE) setStateE(Math.ceil(Math.random()*6));
+    if(!stateE)
+    setStateE(Math.ceil(Math.random()*12));
+    if(!stateF){
+      setStateF(0)
+    }
     incrementSTR(stateE,stateF)
   }
   const F = () => {
-    if(!stateF) setStateF(Math.ceil(Math.random()*6));
+    if(!stateF)
+    setStateF(Math.ceil(Math.random()*12));
+    if(!stateE){
+      setStateE(0)
+    }
+    if(!stateG){
+      setStateG(0)
+    }
     incrementSTR(stateE,stateF)
     incrementHP(stateG,stateF)
   }
   const G = () => {
-    if(!stateG) setStateG(Math.ceil(Math.random()*6));
+    if(!stateG)
+    setStateG(Math.ceil(Math.random()*12));
+    if(!stateF){
+      setStateF(0)
+    }
+    if(!stateH){
+      setStateH(0)
+    }
     incrementHP(stateG,stateF)
     incrementSP(stateG,stateH)
   }
   const H = () => {
-    if(!stateH) setStateH(Math.ceil(Math.random()*6));
+    if(!stateH)
+    setStateH(Math.ceil(Math.random()*12));
+    if(!stateG){
+      setStateG(0)
+    }
     incrementSP(stateG,stateH)
   }
   const exeA = () => {
