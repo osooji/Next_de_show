@@ -3,8 +3,8 @@ import { ratingNumType0, ratingNumType1 } from '@/lib/SW/type/(menu)/ratingType'
 
 const Rating = ({ratingNumber0,ratingNumber1}:{ratingNumber0:ratingNumType0,ratingNumber1:ratingNumType1}) => {
   return (
-    <div className='flex-col w-[480px] h-[460px] bg-white p-[10px] border shadow-2xl'>
-      <div className='w-[480px] h-[25px] flex justify-center'>レーティング表</div>
+    <div className='flex-col w-[480px] h-[450px] bg-white p-2 border shadow-2xl'>
+      <div className='w-[480px] flex justify-center'>レーティング表</div>
       {/* レーティング表 0-25 */}
       <div className='w-[450px] h-[195px] relative'>
         {/* 左上 */}
@@ -50,11 +50,8 @@ const Rating = ({ratingNumber0,ratingNumber1}:{ratingNumber0:ratingNumType0,rati
         </div>
       </div>
 
-      {/* 空欄 */}
-      <div className='w-[450px] h-[20px]'></div>
-
       {/* // レーティング表  26-50 */}
-      <div className='w-[450px] h-[195px] relative'>
+      <div className='w-[450px] h-[195px] relative mt-2'>
         {/* 左上 */}
         <div className='absolute border top-0 left-0 w-[60px] h-[30px]'></div>
         {/* 右上 */}

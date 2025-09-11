@@ -429,13 +429,13 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
   const numList = [1,2,3,4,5,6,7];
 
   return (
-    <div className='relative w-[594px] h-[420px] m-4 bg-white flex justify-center items-cegitgnter '>
+    <div className='relative w-[594px] h-[420px] m-4 bg-white flex justify-center items-center '>
       {/* 武器画面切り替えボタン */}
       <div className='absolute h-[420px] flex flex-col right-[-50px]'>
         {numList.map((num,index) => (<button key={num} onClick={() => handleList(`${num}`)} className={`z-20 w-[50px] h-[50px] bg-white top-[${index*42}px] border focus:bg-black focus:text-white hover:bg-red-300`}>{num}</button>))}
       </div>
       {/* 武器屋画面 */}
-      <div className="absolute bg-white flex-col justify-center items-center">
+      <div className=" bg-white flex-col justify-center items-center">
       <div className='flex justify-center items-center text-[40px]'>武器屋</div>
         <div className='flex justify-center items-center text-[24px]'>片手剣</div>
         <div className='flex justify-center items-center text-[24px]'>両手剣、斧</div>

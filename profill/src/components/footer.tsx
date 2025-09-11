@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-      <div className="flex items-center justify-around px-4 w-full h-[60px] bottom-0 ring-1 ring-gray-500">
+      <div className="z-20 w-full flex flex-col items-center justify-start p-2 gap-2 right-0">
         {/* ステータス画面 */}
         <Link href="/SWbasic/charSeet">
           <div className="px-4 py-1 border border-amber-400 bg-slate-100 hover:text-white hover:bg-gray-800 rounded-lg text-medium text-md">
@@ -12,8 +12,8 @@ const Footer = () => {
         </Link>
         {/* ショップ */}
         <Link href="/SWbasic/items">
-          <div className="px-4 py-1 border border-amber-400 bg-slate-100 hover:text-white hover:bg-gray-800 rounded-lg text-medium text-md">
-            SHOP
+          <div className="w-full px-4 py-1 border border-amber-400 bg-slate-100 hover:text-white hover:bg-gray-800 rounded-lg text-medium text-md">
+            SHOP (道,武,防,魔)
           </div>
         </Link>
         {/* スキル */}

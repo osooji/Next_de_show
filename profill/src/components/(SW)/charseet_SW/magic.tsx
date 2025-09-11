@@ -35,13 +35,14 @@ export const Magic = () => {
       <div className='w-[170px] text-[10px]'>コモンルーン</div>
       <div className=' w-[170px] flex-col'>
         <div className='  flex justify-center'>
-          <div className='border w-[100px] text-[9px] flex justify-center items-center'>コモンルーン</div>
-          <div className='border w-[70px] text-[8px] flex justify-center items-center'>消費精神力</div>
+          <div className='border w-[120px] text-[9px] flex justify-center items-center'>コモンルーン</div>
+          <div className='border w-[50px] text-[8px] flex justify-center items-center'>消費精神力</div>
         </div>
         {magicItems.map((magic) =>
+        magicItems.length < 8 &&
         <div key={magic.name} className='flex'>
-          <div className='border w-[100px] flex justify-center text-[10px]'>{magic.name}</div>
-          <div className='border w-[70px] flex justify-center text-[10px]'>{magic.value}</div>
+          <div className='border w-[120px] flex justify-center text-[10px]'>{magic.name}</div>
+          <div className='border w-[50px] flex justify-center text-[10px]'>{magic.value}</div>
         </div>
         )}
       </div>

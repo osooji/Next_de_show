@@ -58,7 +58,7 @@ export const Name = () => {
       {/* 技能、経験値、レベル */}
       <div className='w-[190px] h-[234px] relative flex-col'>
         {/* 経験値、レベル */}
-        <div className='w-[190px] h-[50px] flex'>
+        <div className='w-[190px] flex'>
           {/* 経験値 */}
           <div className='w-[90px] h-[50px] relative flex-col items-center'>
             <div className='w-[90px] h-[10px] absolute flex items-center'>
@@ -79,20 +79,20 @@ export const Name = () => {
               <div className='w-[85px] h-[35px] absolute border flex justify-center items-center'>{maxNum[0].Lv}</div>
             </div>
           </div>
-        </div>
-        {/* 技能表 */}
-        <div className='w-[190px] absolute bottom-0 flex-col border'>
-          <div className='flex'>
-            <div className='border w-[160px] h-[20px] flex justify-center items-center text-[12px]'>技能名</div>
-            <div className='border w-[30px] h-[20px] flex justify-center items-center text-[8px]'>レベル</div>
+          {/* 技能表 */}
+          <div className='w-[190px] absolute mt-14 flex-col border'>
+            <div className='flex'>
+              <div className='border w-[160px] h-[20px] flex justify-center items-center text-[12px]'>技能名</div>
+              <div className='border w-[30px] h-[20px] flex justify-center items-center text-[8px]'>レベル</div>
+            </div>
+            {allJob.map((job,index) =>
+            job.Lv > 0 &&
+            <div key={index} className='flex'>
+              <div className='border w-[160px] h-[20px] pl-4 text-sm'>{job.name}</div>
+              <div className='border w-[30px] h-[20px] flex justify-center'>{job.Lv}</div>
+            </div>
+            )}
           </div>
-          {allJob.map((job,index) =>
-          job.Lv > 0 &&
-          <div key={index} className='flex'>
-            <div className='border w-[160px] h-[20px] pl-4 text-sm'>{job.name}</div>
-            <div className='border w-[30px] h-[20px] flex justify-center'>{job.Lv}</div>
-          </div>
-          )}
         </div>
       </div>
     </div>

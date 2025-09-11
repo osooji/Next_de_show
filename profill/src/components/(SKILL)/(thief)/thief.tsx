@@ -19,11 +19,11 @@ const Thief = ({thiefSkill}:{thiefSkill:thiefSkillList}) => {
   const thiefList = ["1","2"];
   return (
     <div className='flex items-end mx-4'>
-    <div className="relative w-[594px] h-[420px] bg-white m-4 flex-col justify-center items-center border">
+    <div className="relative w-[594px] h-[420px] bg-white m-1 flex-col justify-center items-center border">
       <div className='absolute flex flex-col right-[-42px]'>
         {thiefList.map((list,index) => (<button key={list} onClick={() => handleList(`${list}`)} className={` z-20 bg-white w-[42px] h-[42px] top-[${index*42}px] border focus:bg-black focus:text-white hover:bg-slate-300`}>{list}</button>))}
       </div>
-      <div className='absolute left-[-1px] h-[420px]'>
+      <div className=' left-[-1px] h-[420px]'>
         <div className='h-[45px] flex items-center'>
           {/* スキルの名前 */}
           <div className='flex w-[200px] h-[45px] px-5 items-center border'>スキルの名前</div>
@@ -56,11 +56,11 @@ const Thief = ({thiefSkill}:{thiefSkill:thiefSkillList}) => {
         {/* mapメソッド */}
         {thiefSkill.n2.map((thief,index) => (
           <div  key={index} className='flex'>
-            <div className='flex w-[200px] h-[40px] px-5 items-center border'>{thief.name}</div>
-            <div className='flex w-[100px] h-[40px] justify-center items-center border'>{thief.prot}</div>
-            <div className='flex w-[100px] h-[40px] justify-center items-center border'>{thief.num}</div>
-            <div className='flex w-[100px] h-[40px] justify-center items-center border'>{thief.limit}</div>
-            <div className='flex w-[94px] h-[40px] justify-center items-center border'>{thief.reTry}</div>
+            <div className='flex w-[200px] h-[35px] px-5 items-center border'>{thief.name}</div>
+            <div className='flex w-[100px] h-[35px] justify-center items-center border'>{thief.prot}</div>
+            <div className='flex w-[100px] h-[35px] justify-center items-center border'>{thief.num}</div>
+            <div className='flex w-[100px] h-[35px] justify-center items-center border'>{thief.limit}</div>
+            <div className='flex w-[94px] h-[35px] justify-center items-center border'>{thief.reTry}</div>
           </div>
         ))}
       </div>

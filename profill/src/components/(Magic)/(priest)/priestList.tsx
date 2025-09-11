@@ -14,10 +14,10 @@ export const PriestList1 = ({name,sp,range,time,resist,effect,category,magnifica
     }
 
   return (
-    <div className='w-[1000px] flex justify-between'>
+    <div className='w-[796px] flex'>
       <div className='w-[594px] flex'>
         {/* 魔法の名前 */}
-        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] px-2 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
+        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] h-[40px] px-1 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
         {/* 消費精神力 */}
         <div className='flex w-[45px] px-2 pt-1 justify-center items-center border'>{sp}</div>
         {/* 距離 */}
@@ -27,10 +27,10 @@ export const PriestList1 = ({name,sp,range,time,resist,effect,category,magnifica
         {/* 抵抗 */}
         <div className='flex w-[94px] px-2 pt-1 justify-center items-center border'>{resist}</div>
       </div>
-      <div className='absolute flex-col w-[300px] right-0 ml-[48px] top-1 border'>
-        <div className='absolute w-[300px]  h-[50px] top-[-50px] left-[-1px] flex justify-center items-center border bg-yellow-300'>詳細</div>
+      <div className='absolute flex-col w-[180px] right-[-26px] top-0 border'>
         {list===`${ID}` &&
-        <div className='h-full flex-col bg-white'>
+        <div className='h-full flex-col bg-white text-sm'>
+          <div className='py-1 flex justify-center items-center border bg-yellow-300'>詳細</div>
           <div className='pt-2 pl-4'>{name}</div>
           <div className='pt-2 pl-4'>【対象】: {effect}</div>
           <div className='pt-2 pl-4'>【種別】: {category}</div>
@@ -56,10 +56,10 @@ export const PriestList2 = ({name,sp,range,time,resist,effect,category,magnifica
     }
 
   return (
-    <div className='w-[1000px] flex justify-between'>
+    <div className='w-[796px] flex'>
       <div className='w-[594px] flex'>
         {/* 魔法の名前 */}
-        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] px-2 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
+        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] h-[40px] px-1 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
         {/* 消費精神力 */}
         <div className='flex w-[45px] px-2 pt-1 justify-center items-center border'>{sp}</div>
         {/* 距離 */}
@@ -69,10 +69,10 @@ export const PriestList2 = ({name,sp,range,time,resist,effect,category,magnifica
         {/* 抵抗 */}
         <div className='flex w-[94px] px-2 pt-1 justify-center items-center border'>{resist}</div>
       </div>
-      <div className='absolute flex-col w-[300px] right-0 ml-[48px] top-1 border'>
-        <div className='absolute w-[300px]  h-[50px] top-[-50px] left-[-1px] flex justify-center items-center border bg-yellow-300'>詳細</div>
+      <div className='absolute flex-col w-[180px] right-[-26px] top-0 border'>
         {list===`${ID}` &&
-        <div className='h-full flex-col bg-white'>
+        <div className='h-full flex-col bg-white text-sm'>
+          <div className='py-1 flex justify-center items-center border bg-yellow-300'>詳細</div>
           <div className='pt-2 pl-4'>{name}</div>
           <div className='pt-2 pl-4'>【対象】: {effect}</div>
           <div className='pt-2 pl-4'>【種別】: {category}</div>
@@ -98,10 +98,10 @@ export const PriestList3 = ({name,sp,range,time,resist,effect,category,magnifica
     }
 
   return (
-    <div className='w-[1000px] flex justify-between'>
+    <div className='w-[796px] flex'>
       <div className='w-[594px] flex'>
         {/* 魔法の名前 */}
-        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] px-2 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
+        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] h-[40px] px-1 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
         {/* 消費精神力 */}
         <div className='flex w-[45px] px-2 pt-1 justify-center items-center border'>{sp}</div>
         {/* 距離 */}
@@ -111,10 +111,10 @@ export const PriestList3 = ({name,sp,range,time,resist,effect,category,magnifica
         {/* 抵抗 */}
         <div className='flex w-[94px] px-2 pt-1 justify-center items-center border'>{resist}</div>
       </div>
-      <div className='absolute flex-col w-[300px] right-0 ml-[48px] top-1 border'>
-        <div className='absolute w-[300px]  h-[50px] top-[-50px] left-[-1px] flex justify-center items-center border bg-yellow-300'>詳細</div>
+      <div className='absolute flex-col w-[180px] right-[-26px] top-0 border'>
         {list===`${ID}` &&
-        <div className='h-full flex-col bg-white'>
+        <div className='h-full flex-col bg-white text-sm'>
+          <div className='py-1 flex justify-center items-center border bg-yellow-300'>詳細</div>
           <div className='pt-2 pl-4'>{name}</div>
           <div className='pt-2 pl-4'>【対象】: {effect}</div>
           <div className='pt-2 pl-4'>【種別】: {category}</div>
@@ -140,10 +140,10 @@ export const PriestList4 = ({name,sp,range,time,resist,effect,category,magnifica
     }
 
   return (
-    <div className='w-[1000px] flex justify-between'>
+    <div className='w-[796px] flex'>
       <div className='w-[594px] flex'>
         {/* 魔法の名前 */}
-        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] px-2 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
+        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] h-[40px] px-1 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
         {/* 消費精神力 */}
         <div className='flex w-[45px] px-2 pt-1 justify-center items-center border'>{sp}</div>
         {/* 距離 */}
@@ -153,10 +153,10 @@ export const PriestList4 = ({name,sp,range,time,resist,effect,category,magnifica
         {/* 抵抗 */}
         <div className='flex w-[94px] px-2 pt-1 justify-center items-center border'>{resist}</div>
       </div>
-      <div className='absolute flex-col w-[300px] right-0 ml-[48px] top-1 border'>
-        <div className='absolute w-[300px]  h-[50px] top-[-50px] left-[-1px] flex justify-center items-center border bg-yellow-300'>詳細</div>
+      <div className='absolute flex-col w-[180px] right-[-26px] top-0 border'>
         {list===`${ID}` &&
-        <div className='h-full flex-col bg-white'>
+        <div className='h-full flex-col bg-white text-sm'>
+          <div className='py-1 flex justify-center items-center border bg-yellow-300'>詳細</div>
           <div className='pt-2 pl-4'>{name}</div>
           <div className='pt-2 pl-4'>【対象】: {effect}</div>
           <div className='pt-2 pl-4'>【種別】: {category}</div>
@@ -182,10 +182,10 @@ export const PriestList5 = ({name,sp,range,time,resist,effect,category,magnifica
     }
 
   return (
-    <div className='w-[1000px] flex justify-between'>
+    <div className='w-[796px] flex'>
       <div className='w-[594px] flex'>
         {/* 魔法の名前 */}
-        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] px-2 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
+        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] h-[40px] px-1 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
         {/* 消費精神力 */}
         <div className='flex w-[45px] px-2 pt-1 justify-center items-center border'>{sp}</div>
         {/* 距離 */}
@@ -195,10 +195,10 @@ export const PriestList5 = ({name,sp,range,time,resist,effect,category,magnifica
         {/* 抵抗 */}
         <div className='flex w-[94px] px-2 pt-1 justify-center items-center border'>{resist}</div>
       </div>
-      <div className='absolute flex-col w-[300px] right-0 ml-[48px] top-1 border'>
-        <div className='absolute w-[300px]  h-[50px] top-[-50px] left-[-1px] flex justify-center items-center border bg-yellow-300'>詳細</div>
+      <div className='absolute flex-col w-[180px] right-[-26px] top-0 border'>
         {list===`${ID}` &&
-        <div className='h-full flex-col bg-white'>
+        <div className='h-full flex-col bg-white text-sm'>
+          <div className='py-1 flex justify-center items-center border bg-yellow-300'>詳細</div>
           <div className='pt-2 pl-4'>{name}</div>
           <div className='pt-2 pl-4'>【対象】: {effect}</div>
           <div className='pt-2 pl-4'>【種別】: {category}</div>
@@ -224,10 +224,10 @@ export const PriestList6 = ({name,sp,range,time,resist,effect,category,magnifica
     }
 
   return (
-    <div className='w-[1000px] flex justify-between'>
+    <div className='w-[796px] flex'>
       <div className='w-[594px] flex'>
         {/* 魔法の名前 */}
-        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] px-1 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
+        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] h-[40px] px-1 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
         {/* 消費精神力 */}
         <div className='flex w-[45px] px-2 pt-1 justify-center items-center border'>{sp}</div>
         {/* 距離 */}
@@ -237,10 +237,10 @@ export const PriestList6 = ({name,sp,range,time,resist,effect,category,magnifica
         {/* 抵抗 */}
         <div className='flex w-[94px] px-2 pt-1 justify-center items-center border'>{resist}</div>
       </div>
-      <div className='absolute flex-col w-[300px] right-0 ml-[48px] top-1 border'>
-        <div className='absolute w-[300px]  h-[50px] top-[-50px] left-[-1px] flex justify-center items-center border bg-yellow-300'>詳細</div>
+      <div className='absolute flex-col w-[180px] right-[-26px] top-0 border'>
         {list===`${ID}` &&
-        <div className='h-full flex-col bg-white'>
+        <div className='h-full flex-col bg-white text-sm'>
+          <div className='py-1 flex justify-center items-center border bg-yellow-300'>詳細</div>
           <div className='pt-2 pl-4'>{name}</div>
           <div className='pt-2 pl-4'>【対象】: {effect}</div>
           <div className='pt-2 pl-4'>【種別】: {category}</div>
@@ -266,10 +266,10 @@ export const PriestList7 = ({name,sp,range,time,resist,effect,category,magnifica
     }
 
   return (
-    <div className='w-[1000px] flex justify-between'>
+    <div className='w-[796px] flex'>
       <div className='w-[594px] flex'>
         {/* 魔法の名前 */}
-        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] px-2 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
+        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] h-[40px] px-1 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
         {/* 消費精神力 */}
         <div className='flex w-[45px] px-2 pt-1 justify-center items-center border'>{sp}</div>
         {/* 距離 */}
@@ -279,10 +279,10 @@ export const PriestList7 = ({name,sp,range,time,resist,effect,category,magnifica
         {/* 抵抗 */}
         <div className='flex w-[94px] px-2 pt-1 justify-center items-center border'>{resist}</div>
       </div>
-      <div className='absolute flex-col w-[300px] right-0 ml-[48px] top-1 border'>
-        <div className='absolute w-[300px]  h-[50px] top-[-50px] left-[-1px] flex justify-center items-center border bg-yellow-300'>詳細</div>
+      <div className='absolute flex-col w-[180px] right-[-26px] top-0 border'>
         {list===`${ID}` &&
-        <div className='h-full flex-col bg-white'>
+        <div className='h-full flex-col bg-white text-sm'>
+          <div className='py-1 flex justify-center items-center border bg-yellow-300'>詳細</div>
           <div className='pt-2 pl-4'>{name}</div>
           <div className='pt-2 pl-4'>【対象】: {effect}</div>
           <div className='pt-2 pl-4'>【種別】: {category}</div>
@@ -308,10 +308,10 @@ export const PriestList8 = ({name,sp,range,time,resist,effect,category,magnifica
     }
 
   return (
-    <div className='w-[1000px] flex justify-between'>
+    <div className='w-[796px] flex'>
       <div className='w-[594px] flex'>
         {/* 魔法の名前 */}
-        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] px-2 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
+        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] h-[40px] px-1 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
         {/* 消費精神力 */}
         <div className='flex w-[45px] px-2 pt-1 justify-center items-center border'>{sp}</div>
         {/* 距離 */}
@@ -321,10 +321,10 @@ export const PriestList8 = ({name,sp,range,time,resist,effect,category,magnifica
         {/* 抵抗 */}
         <div className='flex w-[94px] px-2 pt-1 justify-center items-center border'>{resist}</div>
       </div>
-      <div className='absolute flex-col w-[300px] right-0 ml-[48px] top-1 border'>
-        <div className='absolute w-[300px]  h-[50px] top-[-50px] left-[-1px] flex justify-center items-center border bg-yellow-300'>詳細</div>
+      <div className='absolute flex-col w-[180px] right-[-26px] top-0 border'>
         {list===`${ID}` &&
-        <div className='h-full flex-col bg-white'>
+        <div className='h-full flex-col bg-white text-sm'>
+          <div className='py-1 flex justify-center items-center border bg-yellow-300'>詳細</div>
           <div className='pt-2 pl-4'>{name}</div>
           <div className='pt-2 pl-4'>【対象】: {effect}</div>
           <div className='pt-2 pl-4'>【種別】: {category}</div>
@@ -350,10 +350,10 @@ export const PriestList9 = ({name,sp,range,time,resist,effect,category,magnifica
     }
 
   return (
-    <div className='w-[1000px] flex justify-between'>
+    <div className='w-[796px] flex'>
       <div className='w-[594px] flex'>
         {/* 魔法の名前 */}
-        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] px-2 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
+        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] h-[40px] px-1 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
         {/* 消費精神力 */}
         <div className='flex w-[45px] px-2 pt-1 justify-center items-center border'>{sp}</div>
         {/* 距離 */}
@@ -363,10 +363,10 @@ export const PriestList9 = ({name,sp,range,time,resist,effect,category,magnifica
         {/* 抵抗 */}
         <div className='flex w-[94px] px-2 pt-1 justify-center items-center border'>{resist}</div>
       </div>
-      <div className='absolute flex-col w-[300px] right-0 ml-[48px] top-1 border'>
-        <div className='absolute w-[300px]  h-[50px] top-[-50px] left-[-1px] flex justify-center items-center border bg-yellow-300'>詳細</div>
+      <div className='absolute flex-col w-[180px] right-[-26px] top-0 border'>
         {list===`${ID}` &&
-        <div className='h-full flex-col bg-white'>
+        <div className='h-full flex-col bg-white text-sm'>
+          <div className='py-1 flex justify-center items-center border bg-yellow-300'>詳細</div>
           <div className='pt-2 pl-4'>{name}</div>
           <div className='pt-2 pl-4'>【対象】: {effect}</div>
           <div className='pt-2 pl-4'>【種別】: {category}</div>
@@ -392,10 +392,10 @@ export const PriestList10 = ({name,sp,range,time,resist,effect,category,magnific
     }
 
   return (
-    <div className='w-[1000px] flex justify-between'>
+    <div className='w-[796px] flex'>
       <div className='w-[594px] flex'>
         {/* 魔法の名前 */}
-        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px]  px-2 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
+        <button key={ID} onClick={() => handleList(`${ID}`)} className='flex w-[250px] h-[40px] px-1 pt-1 justify-center items-center border focus:bg-slate-400 hover:bg-gray-300'>{name}</button>
         {/* 消費精神力 */}
         <div className='flex w-[45px]  px-2 pt-1 justify-center items-center border'>{sp}</div>
         {/* 距離 */}
@@ -405,10 +405,10 @@ export const PriestList10 = ({name,sp,range,time,resist,effect,category,magnific
         {/* 抵抗 */}
         <div className='flex w-[94px]  px-2 pt-1 justify-center items-center border'>{resist}</div>
       </div>
-      <div className='absolute flex-col w-[300px] right-0 ml-[48px] top-1 border'>
-        <div className='absolute w-[300px] h-[50px] top-[-50px] left-[-1px] flex justify-center items-center border bg-yellow-300'>詳細</div>
+      <div className='absolute flex-col w-[180px] right-[-26px] top-0 border'>
         {list===`${ID}` &&
-        <div className='h-full flex-col bg-white'>
+        <div className='h-full flex-col bg-white text-sm'>
+          <div className='absolute w-[300px] h-[50px] top-[-50px] left-[-1px] flex justify-center items-center border bg-yellow-300'>詳細</div>
           <div className='pt-2 pl-4'>{name}</div>
           <div className='pt-2 pl-4'>【対象】: {effect}</div>
           <div className='pt-2 pl-4'>【種別】: {category}</div>

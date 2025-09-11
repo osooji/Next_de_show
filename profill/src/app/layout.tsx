@@ -19,8 +19,12 @@ export default function RootLayout({
     <html lang="ja">
       <body className="w-screen h-screen text-black bg-cyan-50 border-amber-400 text-medium">
         <Header />
-        <div className="h-[calc(100vh-175px)] mt-8">{children}</div>
-        <Footer />
+        <div className="flex justify-center">
+          <div className="h-[calc(100vh-175px)] ">{children}</div>
+          <div className="absolute right-0 mt-4">
+            <Footer />
+          </div>
+        </div>
       </body>
     </html>
   );

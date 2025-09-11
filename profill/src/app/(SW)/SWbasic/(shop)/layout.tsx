@@ -10,9 +10,9 @@ const layout = ({ children }: Readonly<{children: React.ReactNode}>) => {
   return (
     <div className='flex justify-center'>
       <div className='w-[650px] flex flex-col justify-center'>
-        <div className='flex justify-center items-center py-2'>
-          <div className='w-[200px] text-[30px] flex justify-center items-center'>所持金</div>
-          <div className='w-[200px] h-[50px] text-[40px] flex justify-center items-center border rounded'>{money}</div>
+        <div className='flex justify-center items-center m-2'>
+          <div className='text-xl flex justify-center items-center'>所持金</div>
+          <div className='bg-white px-2  text-xl flex justify-center items-center border rounded'>{money}</div>
         </div>
         {/* ページジャンプ */}
         <div className='flex justify-between items-center '>

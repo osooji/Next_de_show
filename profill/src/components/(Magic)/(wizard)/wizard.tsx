@@ -22,8 +22,8 @@ const Wizard = ({wizardMagicList}:{wizardMagicList:wizardMagicList}) => {
   const LvList = ["Lv1","Lv2","Lv3","Lv4","Lv5","Lv6","Lv7","Lv8","Lv9","Lv10"]
 
   return (
-  <div className='flex items-end mx-4'>
-    <div className="relative w-[594px] h-[420px] bg-white m-4 flex-col justify-center items-center border">
+  <div className='w-[796px] flex items-end mx-4'>
+    <div className="relative w-[594px] h-[420px] bg-white m-1 flex-col justify-center items-center border">
       <div className='absolute h-[420px] flex flex-col  right-[-42px]'>
         {LvList.map((Lvl,index) => (
           <button key={Lvl} onClick={() => handleLvClick(Lvl)} className={` z-20 bg-white w-[42px] h-[42px] top-[${index*42}px] border focus:bg-black focus:text-white hover:bg-slate-300`}>{Lvl}</button>))}
