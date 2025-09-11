@@ -34,6 +34,7 @@ const SettingState = () => {
   const addAllJob = store(state => state.addAllJob);
 
   const A = () => {
+    incrementDEX(stateA,stateB)
     if(!stateA)
     setStateA(Math.ceil(Math.random()*12));
     if(!stateB){
@@ -42,6 +43,8 @@ const SettingState = () => {
     incrementDEX(stateA,stateB)
   }
   const B = () => {
+    incrementDEX(stateA,stateB)
+    incrementAGI(stateC,stateB)
     if(!stateB)
     setStateB(Math.ceil(Math.random()*12));
     if(!stateA){
@@ -54,6 +57,8 @@ const SettingState = () => {
     incrementAGI(stateC,stateB)
   }
   const C = () => {
+    incrementAGI(stateC,stateB)
+    incrementINT(stateC,stateD)
     if(!stateC)
     setStateC(Math.ceil(Math.random()*12));
     if(!stateB){
@@ -66,6 +71,7 @@ const SettingState = () => {
     incrementINT(stateC,stateD)
   }
   const D = () => {
+    incrementINT(stateC,stateD)
     if(!stateD)
     setStateD(Math.ceil(Math.random()*12));
     if(!stateC){
@@ -74,6 +80,7 @@ const SettingState = () => {
     incrementINT(stateC,stateD)
   }
   const E = () => {
+    incrementSTR(stateE,stateF)
     if(!stateE)
     setStateE(Math.ceil(Math.random()*12));
     if(!stateF){
@@ -82,6 +89,8 @@ const SettingState = () => {
     incrementSTR(stateE,stateF)
   }
   const F = () => {
+    incrementSTR(stateE,stateF)
+    incrementHP(stateG,stateF)
     if(!stateF)
     setStateF(Math.ceil(Math.random()*12));
     if(!stateE){
@@ -94,6 +103,8 @@ const SettingState = () => {
     incrementHP(stateG,stateF)
   }
   const G = () => {
+    incrementHP(stateG,stateF)
+    incrementSP(stateG,stateH)
     if(!stateG)
     setStateG(Math.ceil(Math.random()*12));
     if(!stateF){
@@ -106,6 +117,7 @@ const SettingState = () => {
     incrementSP(stateG,stateH)
   }
   const H = () => {
+    incrementSP(stateG,stateH)
     if(!stateH)
     setStateH(Math.ceil(Math.random()*12));
     if(!stateG){
@@ -258,63 +270,63 @@ const SettingState = () => {
       <div className='w-[160px] h-[420px] flex-col justify-center bg-white'>
         <div className='flex justify-center items-center w-[200px] h-[25px] py-4 mb-4 bg-white'>ステータス</div>
         {/* A */}
-        <div className='w-[190px] h-[30px] flex justify-around items-center'>
+        <div className='w-[160px] h-[30px] flex justify-around items-center'>
           <div className='w-[50px] h-[20px] flex justify-center items-center'>A</div>
           <div className='w-[40px] h-[20px] flex justify-center items-center border'>{stateA}
           </div>
           <button onClick={A} className='w-[40px] h-[20px] flex justify-center items-center text-[10px] border hover:bg-slate-500'>ボタン</button>
         </div>
         {/* B */}
-        <div className='w-[190px] h-[30px] flex justify-around items-center'>
+        <div className='w-[160px] h-[30px] flex justify-around items-center'>
           <div className='w-[50px] h-[20px] flex justify-center items-center'>B</div>
           <div className='w-[40px] h-[20px] flex justify-center items-center border'>{stateB}
           </div>
           <button onClick={B} className='w-[40px] h-[20px] flex justify-center items-center text-[10px] border hover:bg-slate-500'>ボタン</button>
         </div>
         {/* C */}
-        <div className='w-[190px] h-[30px] flex justify-around items-center'>
+        <div className='w-[160px] h-[30px] flex justify-around items-center'>
           <div className='w-[50px] h-[20px] flex justify-center items-center'>C</div>
           <div className='w-[40px] h-[20px] flex justify-center items-center border'>{stateC}
           </div>
           <button onClick={C} className='w-[40px] h-[20px] flex justify-center items-center text-[10px] border hover:bg-slate-500'>ボタン</button>
         </div>
         {/* D */}
-        <div className='w-[190px] h-[30px] flex justify-around items-center'>
+        <div className='w-[160px] h-[30px] flex justify-around items-center'>
           <div className='w-[50px] h-[20px] flex justify-center items-center'>D</div>
           <div className='w-[40px] h-[20px] flex justify-center items-center border'>{stateD}
           </div>
           <button onClick={D} className='w-[40px] h-[20px] flex justify-center items-center text-[10px] border hover:bg-slate-500'>ボタン</button>
         </div>
         {/* E */}
-        <div className='w-[190px] h-[30px] flex justify-around items-center'>
+        <div className='w-[160px] h-[30px] flex justify-around items-center'>
           <div className='w-[50px] h-[20px] flex justify-center items-center'>E</div>
           <div className='w-[40px] h-[20px] flex justify-center items-center border'>{stateE}
           </div>
           <button onClick={E} className='w-[40px] h-[20px] flex justify-center items-center text-[10px] border hover:bg-slate-500'>ボタン</button>
         </div>
         {/* F */}
-        <div className='w-[190px] h-[30px] flex justify-around items-center'>
+        <div className='w-[160px] h-[30px] flex justify-around items-center'>
           <div className='w-[50px] h-[20px] flex justify-center items-center'>F</div>
           <div className='w-[40px] h-[20px] flex justify-center items-center border'>{stateF}
           </div>
           <button onClick={F} className='w-[40px] h-[20px] flex justify-center items-center text-[10px] border hover:bg-slate-500'>ボタン</button>
         </div>
         {/* G */}
-        <div className='w-[190px] h-[30px] flex justify-around items-center'>
+        <div className='w-[160px] h-[30px] flex justify-around items-center'>
           <div className='w-[50px] h-[20px] flex justify-center items-center'>G</div>
           <div className='w-[40px] h-[20px] flex justify-center items-center border'>{stateG}
           </div>
           <button onClick={G} className='w-[40px] h-[20px] flex justify-center items-center text-[10px] border hover:bg-slate-500'>ボタン</button>
         </div>
         {/* H */}
-        <div className='w-[190px] h-[30px] flex justify-around items-center'>
+        <div className='w-[160px] h-[30px] flex justify-around items-center'>
           <div className='w-[50px] h-[20px] flex justify-center items-center'>H</div>
           <div className='w-[40px] h-[20px] flex justify-center items-center border'>{stateH}
           </div>
           <button onClick={H} className='w-[40px] h-[20px] flex justify-center items-center text-[10px] border hover:bg-slate-500'>ボタン</button>
         </div>
         {/* 器用度 */}
-        {/* <div className='w-[190px] h-[30px] flex justify-around items-center'>
+        {/* <div className='w-[160px] h-[30px] flex justify-around items-center'>
           <div className='w-[50px] h-[20px] flex justify-center items-center'>器用度</div>
           <div className='w-[40px] h-[20px] flex justify-center items-center border'>{stateDEX}</div>
           <button onClick={DEX} className='w-[40px] h-[20px] flex justify-center items-center text-[10px] border hover:bg-slate-500'>ボタン</button>
