@@ -1,30 +1,30 @@
 export type itemType = {
   bag:{
-    name:string,price:number,min:number,max:number
+    id:number,name:string,price:number,min:number,max:number
   }[],
   camp:{
-    name:string,price:number,min:number,max:number
+    id:number,name:string,price:number,min:number,max:number
   }[],
   lighting:{
-    name:string,price:number,min:number,max:number
+    id:number,name:string,price:number,min:number,max:number
   }[],
   tool:{
-    name:string,price:number,min:number,max:number
+    id:number,name:string,price:number,min:number,max:number
   }[],
   others:{
-    name:string,price:number,min:number,max:number
+    id:number,name:string,price:number,min:number,max:number
   }[],
   food:{
-    name:string,price:number,min:number,max:number
+    id:number,name:string,price:number,min:number,max:number
   }[],
   horse:{
-    name:string,price:number,min:number,max:number
+    id:number,name:string,price:number,min:number,max:number
   }[],
   inn:{
-    name:string,price:number,min:number,max:number
+    id:number,name:string,price:number,min:number,max:number
   }[],
   livingExp:{
-    name:string,price:number,min:number,max:number
+    id:number,name:string,price:number,min:number,max:number
   }[]
 }
 export type itemActionType = {

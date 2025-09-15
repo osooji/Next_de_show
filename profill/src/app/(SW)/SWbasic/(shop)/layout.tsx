@@ -18,7 +18,7 @@ const layout = ({ children }: Readonly<{children: React.ReactNode}>) => {
         <div className='flex justify-between items-center '>
           <Link href="/SWbasic/items" className='border cursor-pointer rounded-md px-4 py-2 hover:text-white hover:bg-gray-700'>アイテム(道具屋)</Link>
           <Link href="/SWbasic/weapon" className='border cursor-pointer rounded-md px-4 py-2 hover:text-white hover:bg-gray-700'>ウェポン(武器屋)</Link>
-          <Link href="/SWbasic/armor" className='border cursor-pointer rounded-md px-4 py-2 hover:text-white hover:bg-gray-700'>アーマー(防具屋)</Link>
+          <a href="/SWbasic/armor" className='border cursor-pointer rounded-md px-4 py-2 hover:text-white hover:bg-gray-700'>アーマー(防具屋)</a>
           <Link href="/SWbasic/magic" className='border cursor-pointer rounded-md px-4 py-2 hover:text-white hover:bg-gray-700'>マジック(魔道具屋)</Link>
         </div>
         {/* ショップ */}

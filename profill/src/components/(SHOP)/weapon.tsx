@@ -3,7 +3,7 @@
 import {  weaponType } from '@/lib/SW/type/(shop)/weaponListType'
 import { store } from '@/lib/SW/type/(sign)/zustand'
 import {  usePathname, useRouter, useSearchParams } from 'next/navigation'
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 
 const Weapon = ({weapon}:{weapon:weaponType}) => {
   // const [formState, formAction, isPending] = useActionState<weaponActionType>(weaponBuy,{success:'',error:''})
@@ -36,7 +36,7 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
     if(money - price > 0) {
       decrementMoney(price);
       addWeaponList({name,value});
-      // reWeaponList()
+      alert(`${name}:${value}買いました`)
     } else alert('お金が足りません')
   }
 
@@ -423,7 +423,6 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
     const params = new URLSearchParams(searchParams);
     params.set("weapon",weaponName)
     router.push(`${pathName}?${params}`)
-    // location.reload()
   }
 
   const numList = [1,2,3,4,5,6,7];
@@ -466,22 +465,22 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div className='h-[40px] flex items-center pl-4 '>片手剣</div>
           {/* mapメソッド */}
           {weapon.sword.map((sword,index) =>
-          <div key={index} className='flex '>
+          <div key={sword.id} className='flex '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="itemName" defaultValue={sword.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' readOnly/>
-              <div className='flex w-[30px] h-[25px] px-2 items-center border bg-white '>{sword.hand1}</div>
+              <input  name="itemName" defaultValue={sword.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{sword.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{sword.min}~{sword.max}</div>
               {/* 筋力の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract(index,sword.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' defaultValue={state[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+              <input name='itemStr' type='hidden' value={state[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd(index,sword.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input name='itemPrice' defaultValue={state[index]*sword.multiplication+sword.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+              <input type='hidden' name='itemPrice' value={state[index]*sword.multiplication+sword.addition} readOnly/><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state[index]*sword.multiplication+sword.addition}</div>
               {/* 買うボタン */}
               <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
             </form>
@@ -496,22 +495,22 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div className='h-[40px] flex items-center pl-4 '>両手剣</div>
           {/* mapメソッド */}
           {weapon.twoHandsSword.map((twoHandsSword,index) =>
-          <div key={index} className='flex justify-center items-center '>
+          <div key={twoHandsSword.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="itemName" defaultValue={twoHandsSword.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' readOnly/>
-              <div className='flex w-[30px] h-[25px] px-2 items-center border bg-white '>{twoHandsSword.hand1}</div>
+              <input  name="itemName" value={twoHandsSword.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{twoHandsSword.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{twoHandsSword.min}~{twoHandsSword.max}</div>
               {/* 筋力の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract0(index,twoHandsSword.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' defaultValue={state0[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+              <input name='itemStr' type='hidden' value={state0[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd0(index,twoHandsSword.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input name='itemPrice' defaultValue={state0[index]*twoHandsSword.multiplication+twoHandsSword.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+              <input type='hidden' name='itemPrice' value={state0[index]*twoHandsSword.multiplication+twoHandsSword.addition} readOnly /><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state0[index]*twoHandsSword.multiplication+twoHandsSword.addition}</div>
               {/* 買うボタン */}
               <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
             </form>
@@ -521,22 +520,22 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div className='h-[40px] flex items-center pl-4 '>斧</div>
           {/* mapメソッド */}
           {weapon.axe.map((axe,index) =>
-          <div key={index} className='flex justify-center items-center '>
+          <div key={axe.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input name="itemName" defaultValue={axe.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' readOnly/>
-              <div className='flex w-[30px] h-[25px] px-2 items-center border bg-white '>{axe.hand1}</div>
+              <input name="itemName" defaultValue={axe.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{axe.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{axe.min}~{axe.max}</div>
               {/* 筋力の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract1(index,axe.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' defaultValue={state1[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white 'readOnly />
+              <input name='itemStr' type='hidden' value={state1[index]} readOnly /><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd1(index,axe.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input name='itemPrice' defaultValue={state1[index]*axe.multiplication+axe.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+              <input type='hidden' name='itemPrice' value={state1[index]*axe.multiplication+axe.addition}  readOnly /><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state1[index]*axe.multiplication+axe.addition}</div>
               {/* 買うボタン */}
               <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
             </form>
@@ -544,54 +543,54 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           )}
         </div>
       }
-      {/* 武器の名前 2 槍、槌矛　戦棍、棍棒 */}
+      {/* 武器の名前 2 槍、槌矛 戦棍、棍棒 */}
       {wea==="3" &&
         <div className="absolute w-[594px] h-[420px] bg-white top-[40px] flex-col border">
           {/* 武器武器の種類 槍 */}
           <div className='h-[40px] flex items-center pl-4 '>槍</div>
           {/* mapメソッド */}
           {weapon.spear.map((spear,index) =>
-          <div key={index} className='flex justify-center items-center '>
+          <div key={spear.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="itemName" defaultValue={spear.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' readOnly/>
-              <div className='flex w-[30px] h-[25px] px-2 items-center border bg-white '>{spear.hand1}</div>
+              <input  name="itemName" defaultValue={spear.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{spear.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{spear.min}~{spear.max}</div>
               {/* 筋力の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract2(index,spear.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' defaultValue={state2[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+              <input name='itemStr' type='hidden' value={state2[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd2(index,spear.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input name='itemPrice' defaultValue={state2[index]*spear.multiplication+spear.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+              <input type='hidden' name='itemPrice' value={state2[index]*spear.multiplication+spear.addition} readOnly /><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state2[index]*spear.multiplication+spear.addition}</div>
               {/* 買うボタン */}
               <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
             </form>
           </div>
           )}
-          {/* 武器武器の種類 槌矛　戦棍 */}
+          {/* 武器武器の種類 槌矛 戦棍 */}
           <div className='h-[40px] flex items-center pl-4 '>槌矛 戦棍</div>
             {/* mapメソッド */}
             {weapon.mace.map((mace,index) =>
-            <div key={index} className='flex justify-center items-center '>
+            <div key={mace.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
                 {/* 武器の名前 */}
-                <input  name="itemName" defaultValue={mace.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' readOnly/>
-                <div className='flex w-[30px] h-[25px] px-2 items-center border bg-white '>{mace.hand1}</div>
+                <input  name="itemName" defaultValue={mace.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+                <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{mace.hand1}</div>
                 {/* 必要筋力 */}
                 <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{mace.min}~{mace.max}</div>
                 {/* 筋力の数値を選択 */}
                 {/* -ボタン */}
                 <button type='button' onClick={() => handleClickSubtract3(index,mace.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
                 {/* 値 */}
-                <input name='itemStr' defaultValue={state3[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+                <input name='itemStr' type='hidden' value={state3[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
                 {/* +ボタン */}
                 <button type='button' onClick={() => handleClickAdd3(index,mace.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
                 {/* 値段 */}
-                <input name='itemPrice' defaultValue={state3[index]*mace.multiplication+mace.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+                <input type='hidden' name='itemPrice' value={state3[index]*mace.multiplication+mace.addition} readOnly /><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state3[index]*mace.multiplication+mace.addition}</div>
                 {/* 買うボタン */}
                 <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
               </form>
@@ -601,22 +600,22 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div className='h-[40px] flex items-center pl-4 '>棍棒</div>
           {/* mapメソッド */}
           {weapon.club.map((club,index) =>
-          <div key={index} className='flex justify-center items-center '>
+          <div key={club.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="itemName" defaultValue={club.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' readOnly/>
-              <div className='flex w-[30px] h-[25px] px-2 items-center border bg-white '>{club.hand1}</div>
+              <input  name="itemName" defaultValue={club.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{club.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{club.min}~{club.max}</div>
               {/* 筋力の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract4(index,club.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' defaultValue={state4[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+              <input name='itemStr' type='hidden' value={state4[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd4(index,club.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input name='itemPrice' defaultValue={state4[index]*club.multiplication+club.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+              <input type='hidden' name='itemPrice' value={state4[index]*club.multiplication+club.addition} readOnly /><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state4[index]*club.multiplication+club.addition}</div>
               {/* 買うボタン */}
               <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
             </form>
@@ -631,22 +630,22 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div className='h-[40px] flex items-center pl-4 '>杖</div>
           {/* mapメソッド */}
           {weapon.staff.map((staff,index) =>
-          <div key={index} className='flex justify-center items-center '>
+          <div key={staff.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="itemName" defaultValue={staff.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' readOnly/>
-              <div className='flex w-[30px] h-[25px] px-2 items-center border bg-white '>{staff.hand1}</div>
+              <input  name="itemName" defaultValue={staff.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{staff.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{staff.min}~{staff.max}</div>
               {/* 筋力の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract5(index,staff.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' defaultValue={state5[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+              <input name='itemStr' type='hidden' value={state5[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd5(index,staff.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input name='itemPrice' defaultValue={state5[index]*staff.multiplication+staff.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+              <input type='hidden' name='itemPrice' value={state5[index]*staff.multiplication+staff.addition}  readOnly /><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state5[index]*staff.multiplication+staff.addition}</div>
               {/* 買うボタン */}
               <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
             </form>
@@ -656,22 +655,22 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div className='h-[40px] flex items-center pl-4 '>連接棍棒</div>
           {/* mapメソッド */}
           {weapon.flail.map((flail,index) =>
-          <div key={index} className='flex justify-center items-center '>
+          <div key={flail.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="itemName" defaultValue={flail.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' readOnly/>
-              <div className='flex w-[30px] h-[25px] px-2 items-center border bg-white '>{flail.hand1}</div>
+              <input  name="itemName" defaultValue={flail.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{flail.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{flail.min}~{flail.max}</div>
               {/* 筋力の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract6(index,flail.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' defaultValue={state6[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+              <input name='itemStr' type='hidden' value={state6[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd6(index,flail.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input name='itemPrice' defaultValue={state6[index]*flail.multiplication+flail.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+              <input type='hidden' name='itemPrice' value={state6[index]*flail.multiplication+flail.addition}  readOnly /><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state6[index]*flail.multiplication+flail.addition}</div>
               {/* 買うボタン */}
               <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
             </form>
@@ -681,22 +680,22 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div className='h-[40px] flex items-center pl-4 '>戦槌</div>
           {/* mapメソッド */}
           {weapon.warHammer.map((warHammer,index) =>
-          <div key={index} className='flex justify-center items-center '>
+          <div key={warHammer.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="itemName" defaultValue={warHammer.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' readOnly/>
-              <div className='flex w-[30px] h-[25px] px-2 items-center border bg-white '>{warHammer.hand1}</div>
+              <input  name="itemName" defaultValue={warHammer.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{warHammer.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{warHammer.min}~{warHammer.max}</div>
               {/* 筋力の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract7(index,warHammer.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' defaultValue={state7[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+              <input name='itemStr' type='hidden' value={state7[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd7(index,warHammer.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input name='itemPrice' defaultValue={state7[index]*warHammer.multiplication+warHammer.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+              <input type='hidden' name='itemPrice' value={state7[index]*warHammer.multiplication+warHammer.addition} readOnly /><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state7[index]*warHammer.multiplication+warHammer.addition}</div>
               {/* 買うボタン */}
               <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
             </form>
@@ -711,22 +710,22 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div className='h-[40px] flex items-center pl-4 '>弓</div>
           {/* mapメソッド */}
           {weapon.bow.map((bow,index) =>
-          <div key={index} className='flex justify-center items-center '>
+          <div key={bow.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="itemName" defaultValue={bow.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' readOnly/>
-              <div className='flex w-[30px] h-[25px] px-2 items-center border bg-white '>{bow.hand1}</div>
+              <input  name="itemName" defaultValue={bow.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{bow.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{bow.min}~{bow.max}</div>
               {/* 筋力の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract8(index,bow.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' defaultValue={state8[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+              <input name='itemStr' type='hidden' value={state8[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd8(index,bow.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input name='itemPrice' defaultValue={state8[index]*bow.multiplication+bow.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+              <input type='hidden' name='itemPrice' value={state8[index]*bow.multiplication+bow.addition} readOnly /><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state8[index]*bow.multiplication+bow.addition}</div>
               {/* 買うボタン */}
               <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
             </form>
@@ -736,22 +735,22 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div className='h-[40px] flex items-center pl-4 '>弩</div>
           {/* mapメソッド */}
           {weapon.crossBow.map((crossBow,index) =>
-          <div key={index} className='flex justify-center items-center '>
+          <div key={crossBow.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="itemName" defaultValue={crossBow.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' readOnly/>
-              <div className='flex w-[30px] h-[25px] px-2 items-center border bg-white '>{crossBow.hand1}</div>
+              <input  name="itemName" defaultValue={crossBow.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{crossBow.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{crossBow.min}~{crossBow.max}</div>
               {/* 筋力の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract9(index,crossBow.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' defaultValue={state9[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+              <input name='itemStr' type='hidden' value={state9[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state9[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd9(index,crossBow.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input name='itemPrice' defaultValue={state9[index]*crossBow.multiplication+crossBow.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+              <input type='hidden' name='itemPrice' value={state9[index]*crossBow.multiplication+crossBow.addition} readOnly /><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state9[index]*crossBow.multiplication+crossBow.addition}</div>
               {/* 買うボタン */}
               <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
             </form>
@@ -761,22 +760,22 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div className='h-[40px] flex items-center pl-4 '>投石器</div>
           {/* mapメソッド */}
           {weapon.sling.map((sling,index) =>
-          <div key={index} className='flex justify-center items-center '>
+          <div key={sling.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="itemName" defaultValue={sling.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' readOnly/>
-              <div className='flex w-[30px] h-[25px] px-2 items-center border bg-white '>{sling.hand1}</div>
+              <input  name="itemName" defaultValue={sling.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{sling.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{sling.min}~{sling.max}</div>
               {/* 筋力の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract10(index,sling.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' defaultValue={state10[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+              <input name='itemStr' type='hidden' value={state10[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state10[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd10(index,sling.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input name='itemPrice' defaultValue={state10[index]*sling.multiplication+sling.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+              <input type='hidden' name='itemPrice' value={state10[index]*sling.multiplication+sling.addition} readOnly /><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state10[index]*sling.multiplication+sling.addition}</div>
               {/* 買うボタン */}
               <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
             </form>
@@ -791,22 +790,22 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div className='h-[40px] flex items-center pl-4 '>石</div>
           {/* mapメソッド */}
           {weapon.rock.map((rock,index) =>
-          <div key={index} className='flex justify-center items-center '>
+          <div key={rock.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="name" defaultValue={rock.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' readOnly/>
-              <div className='flex w-[30px] h-[25px] px-2 items-center border bg-white '>{rock.hand1}</div>
+              <input  name="name" defaultValue={rock.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{rock.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{rock.min}~{rock.max}</div>
               {/* 筋力の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract11(index,rock.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input defaultValue={state11[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+              <input name='itemStr' type='hidden' value={state11[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state11[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd11(index,rock.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input name='itemPrice' defaultValue={state11[index]*rock.multiplication+rock.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+              <input type='hidden' name='itemPrice' value={state11[index]*rock.multiplication+rock.addition} readOnly /><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state11[index]*rock.multiplication+rock.addition}</div>
               {/* 買うボタン */}
               <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
             </form>
@@ -816,22 +815,22 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div className='h-[40px] flex items-center pl-4 '>絡みつき武器</div>
           {/* mapメソッド */}
           {weapon.throwing.map((throwing,index) =>
-          <div key={index} className='flex justify-center items-center '>
+          <div key={throwing.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="name" defaultValue={throwing.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' readOnly/>
-              <div className='flex w-[30px] h-[25px] px-2 items-center border bg-white '>{throwing.hand1}</div>
+              <input  name="name" defaultValue={throwing.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{throwing.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{throwing.min}~{throwing.max}</div>
               {/* 筋力の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract12(index,throwing.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input defaultValue={state12[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+              <input name='itemStr' type='hidden' value={state12[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state12[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd12(index,throwing.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input name='itemPrice' defaultValue={state12[index]*throwing.multiplication+throwing.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+              <input type='hidden' name='itemPrice' value={state12[index]*throwing.multiplication+throwing.addition} readOnly /><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state12[index]*throwing.multiplication+throwing.addition}</div>
               {/* 買うボタン */}
               <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
             </form>
@@ -841,22 +840,22 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div className='h-[40px] flex items-center pl-4 '>巻き上げ弩</div>
           {/* mapメソッド */}
           {weapon.crannequin.map((crannequin,index) =>
-          <div key={index} className='flex justify-center items-center '>
+          <div key={crannequin.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
               <input  name="name" defaultValue={crannequin.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
-              <div className='flex w-[30px] h-[25px] px-2 items-center border bg-white '>{crannequin.hand1}</div>
+              <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{crannequin.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{crannequin.min}~{crannequin.max}</div>
               {/* 筋力の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract13(index,crannequin.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input defaultValue={state8[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+              <input name='itemStr' type='hidden' value={state13[index]}  readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state13[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd13(index,crannequin.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input name='itemPrice' defaultValue={state13[index]*crannequin.multiplication+crannequin.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+              <input type='hidden' name='itemPrice' value={state13[index]*crannequin.multiplication+crannequin.addition} readOnly /><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state13[index]*crannequin.multiplication+crannequin.addition}</div>
               {/* 買うボタン */}
               <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
             </form>
@@ -871,22 +870,22 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div className='h-[40px] flex items-center pl-4 '>その他</div>
           {/* mapメソッド */}
           {weapon.others.map((others,index) =>
-          <div key={index} className='flex justify-center items-center '>
+          <div key={others.id} className='flex justify-center items-center '>
         <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="name" defaultValue={others.name} className='flex w-[250px] h-[25px] px-5 items-center border bg-white ' readOnly/>
-              <div className='flex w-[30px] h-[25px] px-2 items-center border bg-white '>{others.hand1}</div>
+              <input  name="name" defaultValue={others.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{others.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{others.min}~{others.max}</div>
               {/* 筋力の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract14(index,others.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input defaultValue={state14[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+              <input type='hidden' name='itemStr' value={state14[index]}  readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state14[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd14(index,others.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input name='itemPrice' defaultValue={state14[index]*others.multiplication+others.addition} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+              <input type='hidden' name='itemPrice' value={state14[index]*others.multiplication+others.addition} readOnly /><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state14[index]*others.multiplication+others.addition}</div>
               {/* 買うボタン */}
               <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
             </form>
@@ -896,21 +895,21 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div className='h-[40px] flex items-center pl-4 '>矢（ひとつ１２本）弾（ひとつ２０個）</div>
           {/* mapメソッド */}
           {weapon.arrow.map((arrow,index) =>
-          <div key={index} className='flex justify-between items-center '>
+          <div key={arrow.id} className='flex justify-between items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
               <input  name="name" defaultValue={arrow.name} className='flex w-[370px] h-[25px] pl-5 items-center border bg-white ' />
               {/* 束*/}
-              <input defaultValue={state15[index]*arrow.stock} className='flex w-[50px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+              <input type='hidden' name='itemNum' defaultValue={state15[index]*arrow.stock} readOnly /><div className='w-[50px] h-[25px] flex justify-center border bg-white'>{state15[index]*arrow.stock}</div>
               {/* 個数の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract15(index)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 個数*/}
-              <input defaultValue={state15[index]} className='flex w-[30px] h-[25px] px-1 justify-center items-center border bg-white ' readOnly/>
+              <input type='hidden' name='itemSte' value={state15[index]} readOnly /><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state15[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd15(index)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
-              <input name='itemPrice' defaultValue={state15[index]*arrow.price} className='flex w-[50px] h-[25px] px-1 justify-center items-center bg-white border' readOnly/>
+              <input type='hidden' name='itemPrice' value={state15[index]*arrow.price} readOnly /><div className='flex justify-center w-[50px] h-[25px] border bg-white'>{state15[index]*arrow.price}</div>
               {/* 買うボタン */}
               <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border bg-white hover:bg-slate-300 `}>買う</button>
             </form>

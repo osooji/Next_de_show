@@ -195,9 +195,17 @@ const SettingState = () => {
       incrementSP(stateG,stateH)
     };
   }
+  const submitButtonExe = () => {
+    incrementDEX(stateA,stateB)
+    incrementAGI(stateC,stateB)
+    incrementINT(stateC,stateD)
+    incrementSTR(stateE,stateF)
+    incrementHP(stateG,stateF)
+    incrementSP(stateG,stateH)
+  }
   const handleAddAllJob = (name:string,Lv:number) =>{
     const product = {name,Lv}
-    if(((name === 'bard' || name === 'sage' || name === 'ranger') && exe > 500*Lv) || exe > 1000*Lv || (name === 'wizard' && exe > 1000*Lv+1000)) {
+    if(((name === 'bard' || name === 'sage' || name === 'ranger') && exe > 500+500*Lv) || exe > 1000+1000*Lv || (name === 'wizard' && exe > 1000*Lv+2000)) {
     if(name === 'bard' || name === 'sage' || name === 'ranger'){decrementExe(500+Lv*500)}
     else if (name === 'wizard'){ decrementExe(1000+Lv*1000)}
     else decrementExe(1000+Lv*1000)
@@ -267,11 +275,14 @@ const SettingState = () => {
               </div>
               <button onClick={exeH} className='w-[40px] flex justify-center items-center border hover:bg-slate-500'>+1</button>
             </div>
+            <div className='flex items-center justify-center p-2 gap-2'>
+              <button onClick={submitButtonExe} className='w-full flex justify-center items-center border hover:bg-slate-500'>ステータスUP</button>
+            </div>
           </div>
           <div className='w-[150px] flex-col justify-center bg-white'>
             <div className='flex justify-center items-center py-1 bg-white'>職業(JOB)</div>
             {allJob.map(job => (
-              <div key={job.name} className='flex items-center justify-center p-2 gap-2' >
+              <div key={job.name} className='flex items-center justify-end p-2 gap-2' >
                 <div className='w-[70px] flex justify-center items-center  px-2'>{job.name}</div>
                 <div className='w-[30px] flex justify-center items-center border px-2'>{job.Lv}</div>
                 <button onClick={() => handleAddAllJob(job.name,job.Lv)} className='w-[30px] flex justify-center items-center border hover:bg-slate-500  px-1'>+1</button>

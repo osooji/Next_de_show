@@ -1,57 +1,57 @@
 export const item = {
   bag:[
-    {name:"背負い袋(革製)",price:50,min:1,max:9},
-    {name:"袋(布製)",price:15,min:1,max:9},
-    {name:"小袋(布製)",price:5,min:1,max:9},
-    {name:"手提げ袋(布製)",price:10,min:1,max:9},
-    {name:"ベルトポーチ(革製)",price:15,min:1,max:9},
-    {name:"水袋(革製)",price:20,min:1,max:9}
+    {id:1,name:"背負い袋(革製)",price:50,min:1,max:9},
+    {id:2,name:"袋(布製)",price:15,min:1,max:9},
+    {id:3,name:"小袋(布製)",price:5,min:1,max:9},
+    {id:4,name:"手提げ袋(布製)",price:10,min:1,max:9},
+    {id:5,name:"ベルトポーチ(革製)",price:15,min:1,max:9},
+    {id:6,name:"水袋(革製)",price:20,min:1,max:9}
   ],
   camp:[
-    {name:"マント",price:40,min:1,max:9},
-    {name:"毛布",price:50,min:1,max:9},
-    {name:"テント(５人用)",price:300,min:1,max:9},
-    {name:"食器(１セット)",price:12,min:1,max:9},
-    {name:"調理道具(１セット)",price:50,min:1,max:9}
+    {id:7,name:"マント",price:40,min:1,max:9},
+    {id:8,name:"毛布",price:50,min:1,max:9},
+    {id:9,name:"テント(５人用)",price:300,min:1,max:9},
+    {id:10,name:"食器(１セット)",price:12,min:1,max:9},
+    {id:11,name:"調理道具(１セット)",price:50,min:1,max:9}
   ],
   lighting:[
-    {name:"たいまつ(６本,１２ｈ)",price:5,min:1,max:9},
-    {name:"ランタン",price:40,min:1,max:9},
-    {name:"火口箱",price:20,min:1,max:9},
-    {name:"油(ランタン用、１２ｈ)",price:5,min:1,max:9}
+    {id:12,name:"たいまつ(６本,１２ｈ)",price:5,min:1,max:9},
+    {id:13,name:"ランタン",price:40,min:1,max:9},
+    {id:14,name:"火口箱",price:20,min:1,max:9},
+    {id:15,name:"油(ランタン用、１２ｈ)",price:5,min:1,max:9}
   ],
   tool:[
-    {name:"ロープ(１０メートル)",price:10,min:1,max:9},
-    {name:"くさび(１０本)",price:20,min:1,max:9},
-    {name:"小型ハンマー",price:10,min:1,max:9},
-    {name:"手鏡",price:100,min:1,max:9}
+    {id:16,name:"ロープ(１０メートル)",price:10,min:1,max:9},
+    {id:17,name:"くさび(１０本)",price:20,min:1,max:9},
+    {id:18,name:"小型ハンマー",price:10,min:1,max:9},
+    {id:19,name:"手鏡",price:100,min:1,max:9}
   ],
   others:[
-    {name:"羊皮紙(１０枚)",price:10,min:1,max:9},
-    {name:"羽根ペン/インク",price:5,min:1,max:9},
-    {name:"シーフ用ツール",price:100,min:1,max:1},
-    {name:"楽器",price:100,min:1,max:1}
+    {id:20,name:"羊皮紙(１０枚)",price:10,min:1,max:9},
+    {id:21,name:"羽根ペン/インク",price:5,min:1,max:9},
+    {id:22,name:"シーフ用ツール",price:100,min:1,max:1},
+    {id:23,name:"楽器",price:100,min:1,max:1}
   ],
   food:[
-    {name:"食料",price:3,min:1,max:9},
-    {name:"保存食",price:7,min:1,max:9},
-    {name:"ワイン",price:2,min:1,max:9},
-    {name:"エール",price:1,min:1,max:9}
+    {id:24,name:"食料",price:3,min:1,max:9},
+    {id:25,name:"保存食",price:7,min:1,max:9},
+    {id:26,name:"ワイン",price:2,min:1,max:9},
+    {id:27,name:"エール",price:1,min:1,max:9}
   ],
   horse:[
-    {name:"荷馬",price:1500,min:1,max:9},
-    {name:"乗用馬",price:5000,min:1,max:9},
-    {name:"軍馬",price:10000,min:1,max:9},
-    {name:"ラバ",price:1000,min:1,max:9},
-    {name:"ロバ",price:800,min:1,max:9},
-    {name:"ラクダ",price:2000,min:1,max:9}
+    {id:28,name:"荷馬",price:1500,min:1,max:9},
+    {id:29,name:"乗用馬",price:5000,min:1,max:9},
+    {id:30,name:"軍馬",price:10000,min:1,max:9},
+    {id:31,name:"ラバ",price:1000,min:1,max:9},
+    {id:32,ame:"ロバ",price:800,min:1,max:9},
+    {id:33,name:"ラクダ",price:2000,min:1,max:9}
   ],
   inn:[
-    {name:"一泊(食事別)",price:30,min:1,max:1},
-    {name:"一週間(食事別)",price:150,min:1,max:1},
-    {name:"一ヶ月(食事別)",price:300,min:1,max:1}
+    {id:34,name:"一泊(食事別)",price:30,min:1,max:1},
+    {id:35,name:"一週間(食事別)",price:150,min:1,max:1},
+    {id:36,name:"一ヶ月(食事別)",price:300,min:1,max:1}
   ],
   livingExp:[
-    {name:"一日",price:10,min:1,max:1}
+    {id:37,name:"一日",price:10,min:1,max:1}
   ]
 }
