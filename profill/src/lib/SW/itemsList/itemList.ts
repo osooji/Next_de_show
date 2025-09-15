@@ -43,7 +43,7 @@ export const item = {
     {id:29,name:"乗用馬",price:5000,min:1,max:9},
     {id:30,name:"軍馬",price:10000,min:1,max:9},
     {id:31,name:"ラバ",price:1000,min:1,max:9},
-    {id:32,ame:"ロバ",price:800,min:1,max:9},
+    {id:32,name:"ロバ",price:800,min:1,max:9},
     {id:33,name:"ラクダ",price:2000,min:1,max:9}
   ],
   inn:[
