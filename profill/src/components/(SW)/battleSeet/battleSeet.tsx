@@ -300,6 +300,7 @@ const BattleSeet = ({ratingNumber0,ratingNumber1}:{ratingNumber0:ratingNumType0,
           </div>
         </div>
       </div>
+      {/* rating */}
       <div className='flex flex-col h-[420px] mi-8 bg-white'>
         <div className='flex justify-center p-2'>レーティング表</div>
         <div className=' flex justify-center gap-2 pl-2'>

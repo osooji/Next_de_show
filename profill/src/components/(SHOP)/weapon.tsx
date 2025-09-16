@@ -24,6 +24,7 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
   const [state13, setState13] = useState<number[]>([5,10,20])/*巻き上げ弩*/
   const [state14, setState14] = useState<number[]>([10,12,8,1,1,1,5,1])/*その他*/
   const [state15, setState15] = useState<number[]>([1,1,1])/*矢*/
+  const weaponList = store((state) => (state.weaponList))
   const money = store((state) => (state.money))
   const decrementMoney = store((state) => (state.decrementMoney))
   const addWeaponList = store((state) => (state.addWeaponList))
@@ -33,11 +34,13 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
     const name = formData.get('itemName') as string
     const value = Number(formData.get('itemStr'));
     const price = Number(formData.get('itemPrice'));
-    if(money - price > 0) {
+    const weaponFilter = weaponList.filter(weapon => weapon.name === name)
+    if(money - price > 0 && weaponFilter.length === 0) {
       decrementMoney(price);
       addWeaponList({name,value});
       alert(`${name}:${value}買いました`)
-    } else alert('お金が足りません')
+    } else if (weaponFilter.length > 0) alert('すでに持ってます')
+      else alert('お金が足りません')
   }
 
   /*片手剣筋力値プラス*/
@@ -506,7 +509,7 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract0(index,twoHandsSword.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' type='hidden' value={state0[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
+              <input name='itemStr' type='hidden' value={state0[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state0[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd0(index,twoHandsSword.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
@@ -531,7 +534,7 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract1(index,axe.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' type='hidden' value={state1[index]} readOnly /><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
+              <input name='itemStr' type='hidden' value={state1[index]} readOnly /><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state1[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd1(index,axe.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
@@ -561,7 +564,7 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract2(index,spear.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' type='hidden' value={state2[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
+              <input name='itemStr' type='hidden' value={state2[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state2[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd2(index,spear.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
@@ -586,7 +589,7 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
                 {/* -ボタン */}
                 <button type='button' onClick={() => handleClickSubtract3(index,mace.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
                 {/* 値 */}
-                <input name='itemStr' type='hidden' value={state3[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
+                <input name='itemStr' type='hidden' value={state3[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state3[index]}</div>
                 {/* +ボタン */}
                 <button type='button' onClick={() => handleClickAdd3(index,mace.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
                 {/* 値段 */}
@@ -611,7 +614,7 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract4(index,club.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' type='hidden' value={state4[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
+              <input name='itemStr' type='hidden' value={state4[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state4[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd4(index,club.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
@@ -641,7 +644,7 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract5(index,staff.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' type='hidden' value={state5[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
+              <input name='itemStr' type='hidden' value={state5[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state5[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd5(index,staff.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
@@ -666,7 +669,7 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract6(index,flail.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' type='hidden' value={state6[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
+              <input name='itemStr' type='hidden' value={state6[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state6[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd6(index,flail.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
@@ -691,7 +694,7 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract7(index,warHammer.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' type='hidden' value={state7[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
+              <input name='itemStr' type='hidden' value={state7[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state7[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd7(index,warHammer.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
@@ -721,7 +724,7 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract8(index,bow.min)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 値 */}
-              <input name='itemStr' type='hidden' value={state8[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state[index]}</div>
+              <input name='itemStr' type='hidden' value={state8[index]} readOnly/><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state8[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd8(index,bow.max)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}
@@ -793,7 +796,7 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div key={rock.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="name" defaultValue={rock.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <input  name="itemName" defaultValue={rock.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
               <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{rock.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{rock.min}~{rock.max}</div>
@@ -818,7 +821,7 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div key={throwing.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="name" defaultValue={throwing.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <input  name="itemName" defaultValue={throwing.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
               <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{throwing.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{throwing.min}~{throwing.max}</div>
@@ -843,7 +846,7 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div key={crannequin.id} className='flex justify-center items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="name" defaultValue={crannequin.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <input  name="itemName" defaultValue={crannequin.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
               <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{crannequin.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{crannequin.min}~{crannequin.max}</div>
@@ -873,7 +876,7 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div key={others.id} className='flex justify-center items-center '>
         <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="name" defaultValue={others.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
+              <input  name="itemName" defaultValue={others.name} className='flex w-[250px] h-[25px] pl-5 items-center border bg-white ' readOnly/>
               <div className='flex w-[30px] h-[25px] pl-2 items-center border bg-white '>{others.hand1}</div>
               {/* 必要筋力 */}
               <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white '>必要筋力:{others.min}~{others.max}</div>
@@ -898,14 +901,14 @@ const Weapon = ({weapon}:{weapon:weaponType}) => {
           <div key={arrow.id} className='flex justify-between items-center '>
             <form action={formAction} className='flex justify-center items-center '>
               {/* 武器の名前 */}
-              <input  name="name" defaultValue={arrow.name} className='flex w-[370px] h-[25px] pl-5 items-center border bg-white ' />
+              <input  name="itemName" defaultValue={arrow.name} className='flex w-[370px] h-[25px] pl-5 items-center border bg-white ' />
               {/* 束*/}
               <input type='hidden' name='itemNum' defaultValue={state15[index]*arrow.stock} readOnly /><div className='w-[50px] h-[25px] flex justify-center border bg-white'>{state15[index]*arrow.stock}</div>
               {/* 個数の数値を選択 */}
               {/* -ボタン */}
               <button type='button' onClick={() => handleClickSubtract15(index)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >-</button>
               {/* 個数*/}
-              <input type='hidden' name='itemSte' value={state15[index]} readOnly /><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state15[index]}</div>
+              <input type='hidden' name='itemStr' value={state15[index]} readOnly /><div className='flex justify-center w-[30px] h-[25px] border bg-white'>{state15[index]}</div>
               {/* +ボタン */}
               <button type='button' onClick={() => handleClickAdd15(index)} className='flex w-[20px] h-[25px] px-1 justify-center items-center border bg-white hover:bg-slate-300' >+</button>
               {/* 値段 */}

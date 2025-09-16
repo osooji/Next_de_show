@@ -33,6 +33,8 @@ const SettingState = () => {
   const decrementExe = store(state => state.decrementExe);
   const allJob = store(state => state.allJob);
   const addAllJob = store(state => state.addAllJob);
+  const reAllJobs = store(state => state.reAllJobs);
+  const reStates = store(state => state.reStates);
 
   const A = () => {
     incrementDEX(stateA,stateB)
@@ -203,6 +205,10 @@ const SettingState = () => {
     incrementHP(stateG,stateF)
     incrementSP(stateG,stateH)
   }
+  const reStatesButton = () => {
+    reStates();
+    setSubmit(false)
+  }
   const handleAddAllJob = (name:string,Lv:number) =>{
     const product = {name,Lv}
     if(((name === 'bard' || name === 'sage' || name === 'ranger') && exe > 500+500*Lv) || exe > 1000+1000*Lv || (name === 'wizard' && exe > 1000*Lv+2000)) {
@@ -215,7 +221,7 @@ const SettingState = () => {
 
   return (
     <div className="flex justify-center items-center  shadow-2xl">
-      {(submit) ?
+      {(stateA && stateB && stateC && stateD && stateE && stateF && stateG && stateH && submit) ?
       <div className='flex'>
         <div className=' w-[160px] flex-col justify-center bg-white'>
           <div className='flex justify-center items-center py-1 bg-white'>経験値:{exe}</div>
@@ -288,11 +294,15 @@ const SettingState = () => {
                 <button onClick={() => handleAddAllJob(job.name,job.Lv)} className='w-[30px] flex justify-center items-center border hover:bg-slate-500  px-1'>+1</button>
               </div>
             ))}
+          <div className='flex items-center justify-center p-2 gap-2'>
+            <button onClick={reStatesButton} className='w-[40px] flex justify-center items-center border hover:bg-slate-500 text-[7px]'>ステータスリセット</button>
+            <button onClick={reAllJobs} className='w-[40px] flex justify-center items-center border hover:bg-slate-500 text-[7px]'><div className='flex flex-col'>JOB<div>リセット</div></div></button>
+          </div>
         </div>
       </div>
       :
       <div className='w-[160px] h-[420px] flex-col justify-center bg-white'>
-        <div className='flex justify-center items-center w-[200px] h-[25px] py-4 mb-4 bg-white'>ステータス</div>
+        <div className='flex justify-center items-center w-[160px] h-[25px] py-4 mb-4 bg-white'>ステータス</div>
         {/* A */}
         <div className='w-[160px] h-[30px] flex justify-around items-center'>
           <div className='w-[50px] h-[20px] flex justify-center items-center'>A</div>
@@ -352,46 +362,8 @@ const SettingState = () => {
         <div className='flex items-center justify-center p-2 gap-2'>
           <button onClick={submitButton} className='w-[100px] flex justify-center items-center border hover:bg-slate-500'>決定</button>
         </div>
-        {/* 器用度 */}
-        {/* <div className='w-[160px] h-[30px] flex justify-around items-center'>
-          <div className='w-[50px] h-[20px] flex justify-center items-center'>器用度</div>
-          <div className='w-[40px] h-[20px] flex justify-center items-center border'>{stateDEX}</div>
-          <button onClick={DEX} className='w-[40px] h-[20px] flex justify-center items-center text-[10px] border hover:bg-slate-500'>ボタン</button>
-        </div> */}
-        {/* 敏捷度 */}
-        {/* <div className='w-[190px] h-[30px] flex justify-around items-center'>
-          <div className='w-[50px] h-[20px] flex justify-center items-center'>敏捷度</div>
-          <div className='w-[40px] h-[20px] flex justify-center items-center border'>{stateAGI}</div>
-          <button onClick={AGI} className='w-[40px] h-[20px] flex justify-center items-center text-[10px] border hover:bg-slate-500'>ボタン</button>
-        </div> */}
-        {/* 知力 */}
-        {/* <div className='w-[190px] h-[30px] flex justify-around items-center'>
-          <div className='w-[50px] h-[20px] flex justify-center items-center'>知力</div>
-          <div className='w-[40px] h-[20px] flex justify-center items-center border'>{stateINT}</div>
-          <button onClick={INT} className='w-[40px] h-[20px] flex justify-center items-center text-[10px] border hover:bg-slate-500'>ボタン</button>
-        </div> */}
-        {/* 筋力 */}
-        {/* <div className='w-[190px] h-[30px] flex justify-around items-center'>
-          <div className='w-[50px] h-[20px] flex justify-center items-center'>筋力</div>
-          <div className='w-[40px] h-[20px] flex justify-center items-center border'>{stateSTR}</div>
-          <button onClick={STR} className='w-[40px] h-[20px] flex justify-center items-center text-[10px] border hover:bg-slate-500'>ボタン</button>
-        </div> */}
-        {/* 生命力 */}
-        {/* <div className='w-[190px] h-[30px] flex justify-around items-center'>
-          <div className='w-[50px] h-[20px] flex justify-center items-center'>生命力</div>
-          <div className='w-[40px] h-[20px] flex justify-center items-center border'>{stateHP}</div>
-          <button onClick={HP} className='w-[40px] h-[20px] flex justify-center items-center text-[10px] border hover:bg-slate-500'>ボタン</button>
-        </div> */}
-        {/* 精神力 */}
-        {/* <div className='w-[190px] h-[30px] flex justify-around items-center '>
-          <div className='w-[50px] h-[20px] flex justify-center items-center '>精神力</div>
-          <div className='w-[40px] h-[20px] flex justify-center items-center border'>{stateSP}</div>
-          <button onClick={SP} className='w-[40px] h-[20px] flex justify-center items-center text-[10px] border hover:bg-slate-500'>ボタン</button>
-        </div> */}
-      </div>}
-      {/* <div className='relative w-[200px] h-[420px] flex-col justify-center border bg-white'>
-
-      </div> */}
+      </div>
+      }
     </div>
   )
 }

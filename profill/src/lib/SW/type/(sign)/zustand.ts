@@ -4,14 +4,14 @@ import { createJSONStorage, persist } from "zustand/middleware";
 type statesType = {
   name:string,race:string,sex:string,A:number,B:number,C:number,D:number,E:number,F:number,G:number,H:number,DEX:number,AGI:number,INT:number,STR:number,HP:number,SP:number,exe:number,money:number,itemList:{name:string,value:number}[],
   weaponList:{name:string,value:number}[],armorList:{name:string,value:number}[],shieldList:{name:string,value:number}[],magicList:{name:string,value:number}[],
+  
   skillList:{skillName:string,skillLv:number}[],job:{jobName:string,jobLv:number}[],
+
   jobName:string[],jobLv:number[],skillName:string[],skillLv:number[],
+
   allJob:{name:string,Lv:number}[]
 }
-// type itemType ={
-//   name:string,
-//   value:number
-// }[]
+
 type methodType = {
   setName: (name:string) => void,
   setRace: (race:string) => void,
@@ -53,6 +53,8 @@ type methodType = {
 
   addSkills:(skill:{skillName:string,skillLv:number}) => void,
   addJobs:(job:{jobName:string,jobLv:number}) => void,
+  reStates : () => void,
+  reAllJobs : () => void,
 
 
 }
@@ -126,6 +128,9 @@ export const store = create< statesType & methodType >()(
       }
       return {allJob:[...state.allJob]}
     }),
+
+    reStates : () => set({A:0,B:0,C:0,D:0,E:0,F:0,G:0,H:0}),
+    reAllJobs : () => set({allJob:[{name:'fighter',Lv:0},{name:'thief',Lv:0},{name:'ranger',Lv:0},{name:'bard',Lv:0},{name:'sage',Lv:0},{name:'wizard',Lv:0},{name:'priest',Lv:0},{name:'shaman',Lv:0}]}),
 
     addJobs: (job) => set((state) => ({job:[...state.job,job]})),
     addSkills: (skill) => set((state) => ({skillList:[...state.skillList,skill]})),

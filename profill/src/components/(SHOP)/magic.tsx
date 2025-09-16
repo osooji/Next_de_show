@@ -6,6 +6,7 @@ import React, { } from 'react'
 
 const Magic = ({magicItem}:{magicItem:magicItemType}) => {
   const money = store((state) => (state.money))
+  const magic = store((state) => (state.magicList))
   const decrementMoney = store((state) => (state.decrementMoney))
   const addMagicList = store((state) => (state.addMagicList))
   // const [formState, formAction,isPending] = useActionState<magicItemType>(magicBuy,{success:'',error:''})
@@ -13,10 +14,13 @@ const Magic = ({magicItem}:{magicItem:magicItemType}) => {
       const name = formData.get('magicItem') as string
       const value = Number(formData.get('magicSp'));
       const price = Number(formData.get('itemPrice'));
-      if(money - price > 0) {
+      const magicName = magic.filter(magic => magic.name === name)
+      if(money - price > 0 && magicName.length === 0) {
         decrementMoney(price);
         addMagicList({name,value});
-      } else alert('お金が足りません')
+        alert(`${name}買いました`)
+      } else if (magicName.length > 0) alert('すでに持ってます')
+      else alert('お金が足りません')
     }
 
   return (
@@ -33,15 +37,15 @@ const Magic = ({magicItem}:{magicItem:magicItemType}) => {
     {/* 魔法道具の種類 */}
     <div className='h-[40px] flex items-center pl-2 '>コモンルーン</div>
       {/* mapメソッド */}
-      {magicItem.rune.map((rune,index) =>
-      <div key={index}>
+      {magicItem.rune.map((rune) =>
+      <div key={rune.id}>
         <form action={formAction} className='flex justify-center items-center '>
           {/* 魔法道具の名前 */}
           <input name="magicItem" defaultValue={rune.name} className='flex w-[294px] h-[25px] px-5 items-center border' readOnly />
           {/* 消費精神力 */}
           <input name="magicSp" defaultValue={rune.spPrice} className='flex w-[100px] h-[25px] px-10 justify-center items-center border' readOnly />
           {/* 値段 */}
-          <input name="itemPrice" defaultValue={rune.price} className='flex w-[100px] h-[25px] px-7 justify-center items-center border' readOnly />
+          <input type='hidden' name="itemPrice" defaultValue={rune.price} readOnly /><div className='flex w-[100px] h-[25px] px-7 justify-center items-center border'>{rune.price}</div>
           {/* 買うボタン */}
           <button type='submit' className={`flex w-[100px] h-[25px] justify-center items-center border hover:bg-slate-300`}>買う</button>
         </form>

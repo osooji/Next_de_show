@@ -7,6 +7,7 @@ export const Magic = () => {
   const magicItems = store(state => state.magicList)
   const allJob = store(state => state.allJob)
   const INT = store(state => state.INT)
+  const reMagicList = store(state => state.reMagicList)
   const magicJob = allJob.filter((p) => {return p.name === 'wizard' || p.name === 'priest' || p.name === 'shaman'})
 
 
@@ -35,7 +36,9 @@ export const Magic = () => {
       <div className='w-[170px] text-[10px]'>コモンルーン</div>
       <div className=' w-[170px] flex-col'>
         <div className='  flex justify-center'>
-          <div className='border w-[120px] text-[9px] flex justify-center items-center'>コモンルーン</div>
+          <div className='border w-[120px] text-[9px] flex justify-center items-center'>コモンルーン
+          <button type='button' onClick={reMagicList}><div className='flex justify-center items-center px-2 ml-4 text-[6px] text-white bg-gray-700 rounded-full'>クリア</div></button>
+          </div>
           <div className='border w-[50px] text-[8px] flex justify-center items-center'>消費精神力</div>
         </div>
         {magicItems.map((magic) =>

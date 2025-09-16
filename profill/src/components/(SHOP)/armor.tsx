@@ -16,28 +16,35 @@ const Armor = ({armors1, armors2}:{armors1:armor1Type, armors2:armor2Type}) => {
   const addShieldList = store((state) => (state.addShieldList))
   // const reShieldList = store((state) => (state.reShieldList))
   const money = store((state) => (state.money))
+  const armorList = store((state) => (state.armorList))
+  const shieldList = store((state) => (state.shieldList))
 
   const formAction = (formData:FormData) => {
     const name = formData.get('itemName') as string
     const value = Number(formData.get('itemStr'));
     const price = Number(formData.get('itemPrice'));
-    if(money - price > 0) {
+    const armorFilter = armorList.filter(armor => armor.name === name)
+    if(money - price > 0 && armorFilter.length === 0) {
       decrementMoney(price);
       addArmorList({name,value});
       // reArmorList()
       alert(`${name}:${value}買いました`)
-    } else alert('お金が足りません')
+    } else if (armorFilter.length > 0) alert('すでに持ってます')
+      else alert('お金が足りません')
 
   }
   const formActionShield = (formData:FormData) => {
     const name = formData.get('itemName') as string
     const value = Number(formData.get('itemStr'));
     const price = Number(formData.get('itemPrice'));
-    if(money - price > 0) {
+    const shieldFilter = shieldList.filter(shield => shield.name === name)
+    if(money - price > 0 && shieldFilter.length === 0) {
       decrementMoney(price);
       addShieldList({name,value});
       // reShieldList()
-    } else alert('お金が足りません')
+      alert(`${name}:${value}買いました`)
+    } else if (shieldFilter.length > 0) alert('すでに持ってます')
+      else alert('お金が足りません')
 
   }
     // 非金属の筋力値
@@ -161,7 +168,7 @@ const Armor = ({armors1, armors2}:{armors1:armor1Type, armors2:armor2Type}) => {
         {/* 必要筋力 */}
         <div className='flex w-[140px] h-[25px] pl-4 items-center border'>必要筋力:1</div>
         {/* 値 */}
-        <input name='itemStr' defaultValue={1} className='flex w-[70px] h-[25px] pl-8 justify-center items-center border' readOnly />
+        <input type='hidden' name='itemStr' defaultValue={1} readOnly /><div className='flex w-[70px] h-[25px] justify-center items-center border'>1</div>
         {/* 値段 */}
         <input name='itemPrice' defaultValue={60} className='flex w-[50px] h-[25px] pl-3 items-center border' readOnly />
         <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border hover:bg-slate-300 '}`}>買う</button>
@@ -174,7 +181,7 @@ const Armor = ({armors1, armors2}:{armors1:armor1Type, armors2:armor2Type}) => {
         {/* 必要筋力 */}
         <div className='flex w-[140px] h-[25px] pl-4 items-center border bg-white'>必要筋力:13</div>
         {/* 値 */}
-        <input name='itemStr' defaultValue={13} className='flex w-[70px] h-[25px] pl-7 justify-center items-center border bg-white' readOnly />
+        <input type='hidden' name='itemStr' defaultValue={13} readOnly /><div className='flex w-[70px] h-[25px] justify-center items-center border'>13</div>
         {/* 値段 */}
         <input name='itemPrice' defaultValue={300} className='flex w-[50px] h-[25px] pl-2 items-center border bg-white' readOnly />
         <button type='submit' className={`flex w-[54px] h-[25px] justify-center items-center border hover:bg-slate-300 '}`}>買う</button>
